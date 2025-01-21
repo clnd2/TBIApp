@@ -1,6 +1,8 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,15 @@ public class RemindersActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void showReminders(View v) {
+
+        Intent i = null;
+
+        i = new Intent(this, ShowRemindersAcitvity.class);
+
+        startActivity(i);
+
     }
 }

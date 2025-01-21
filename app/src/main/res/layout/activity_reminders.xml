@@ -7,14 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".RemindersActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:text="THIS IS THE REMINDERS SCREEN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/buttonShowReminders"
+        android:layout_width="219dp"
+        android:layout_height="141dp"
+        android:text="Show Reminders"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <Button
+        android:id="@+id/buttonSetReminders"
+        android:layout_width="220dp"
+        android:layout_height="141dp"
+        android:text="+ Set Reminders"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="476dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
