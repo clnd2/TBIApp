@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setReminders">
+
+  <Button
+      android:id="@+id/btnDone"
+      android:layout_width="142dp"
+      android:layout_height="77dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="60dp"
+      android:layout_marginBottom="47dp"
+      android:onClick="done"
+      android:text="Done"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <EditText
+      android:id="@+id/textDescription"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="76dp"
+      android:ems="10"
+      android:text="Description"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/textDate"
+      android:layout_width="218dp"
+      android:layout_height="36dp"
+      android:text="Date"
+      tools:layout_editor_absoluteX="16dp"
+      tools:layout_editor_absoluteY="16dp" />
+
+  <EditText
+      android:id="@+id/editTextDate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="15dp"
+      android:layout_marginTop="88dp"
+      android:ems="10"
+      android:inputType="date"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="409dp"
+      android:layout_height="wrap_content"
+      tools:layout_editor_absoluteX="1dp"
+      tools:layout_editor_absoluteY="323dp">
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/textInputEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:hint="hint"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+
+  <TextView
+      android:id="@+id/textRepeat"
+      android:layout_width="106dp"
+      android:layout_height="29dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="148dp"
+      android:text="Repeat?"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+  <Spinner
+      android:id="@+id/dropdownRepeat"
+      android:layout_width="333dp"
+      android:layout_height="26dp"
+      android:layout_marginStart="15dp"
+      android:layout_marginTop="28dp"
+      android:spinnerMode="dropdown"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textRepeat" />
+
+  <Button
+      android:id="@+id/btnCancel"
+      android:layout_width="142dp"
+      android:layout_height="77dp"
+      android:layout_marginEnd="51dp"
+      android:layout_marginBottom="47dp"
+      android:onClick="cancel"
+      android:text="Cancel"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
