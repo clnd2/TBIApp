@@ -13,6 +13,18 @@
         android:theme="@style/Theme.AppInterface1"
         tools:targetApi="31">
         <activity
+            android:name=".pswdShow"
+            android:exported="false" />
+        <activity
+            android:name=".pswdSave"
+            android:exported="false" />
+        <activity
+            android:name=".choiceScreen"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".testing"
             android:exported="false" />
         <activity

@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "Profile":
                 i = new Intent(this, ProfileActivity.class);
-
+                break;
+            case "Password Manager":
+                i = new Intent(this, choiceScreen.class);
                 break;
             default:
-                i = new Intent(this, MessagesActivity.class);
+                i = new Intent(this, MainActivity.class);
 
         }
         startActivity(i);
