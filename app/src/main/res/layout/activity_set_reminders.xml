@@ -25,10 +25,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="172dp"
+      android:layout_marginTop="9dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
   <EditText
       android:id="@+id/uiDescription"
@@ -45,20 +45,20 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="292dp"
+      android:layout_marginTop="18dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textTime" />
 
   <EditText
       android:id="@+id/uiLocation"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="424dp"
+      android:layout_marginTop="25dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
   <TextView
       android:id="@+id/textDescription"
