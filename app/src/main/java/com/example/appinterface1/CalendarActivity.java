@@ -1,6 +1,9 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -44,6 +47,23 @@ public class CalendarActivity extends AppCompatActivity {
                     }
                 }
         );
+
+    }
+
+    public void changeActivity(View v) {
+        // when a button in main menu is pressed, will switch to corresponding activity
+
+        Intent i = null;
+        String title = ((Button) v).getText().toString();
+        switch (title) {
+            case "Back":
+                i = new Intent(this, MainActivity.class);
+                break;
+            default:
+                i = new Intent(this, CalendarActivity.class);
+
+        }
+        startActivity(i);
 
     }
 }
