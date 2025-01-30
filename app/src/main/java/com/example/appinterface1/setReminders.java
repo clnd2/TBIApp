@@ -28,7 +28,7 @@ public class setReminders extends AppCompatActivity {
 
         Intent i = null;
 
-        i = new Intent(this, MainActivity.class);
+        i = new Intent(this, ShowRemindersActivity.class);
 
         startActivity(i);
 
