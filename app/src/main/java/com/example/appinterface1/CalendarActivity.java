@@ -34,17 +34,9 @@ public class CalendarActivity extends AppCompatActivity {
 
         // listener for when date selected is changed
         calendar.setOnDateChangeListener(
-                new CalendarView.OnDateChangeListener() {
-                    @Override
-                    public void onSelectedDayChange(
-                            @NonNull CalendarView view,
-                            int year,
-                            int month,
-                            int dayOfMonth)
-                    {
-                        String date = (month+1) + "-" + dayOfMonth + "-" + year;
-                        date_view.setText(date);
-                    }
+                (view, year, month, dayOfMonth) -> {
+                    String date = (month+1) + "-" + dayOfMonth + "-" + year;
+                    date_view.setText(date);
                 }
         );
 
@@ -53,7 +45,7 @@ public class CalendarActivity extends AppCompatActivity {
     public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
+        Intent i;
         String title = ((Button) v).getText().toString();
         switch (title) {
             case "Back":
