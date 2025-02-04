@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
+        Intent i;
         String title = ((Button) v).getText().toString();
         switch (title) {
             case "Calendar":
