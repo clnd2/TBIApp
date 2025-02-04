@@ -12,7 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginTop="212dp"
+        android:onClick="changeActivity2"
         android:text="Regular Settings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="changeActivity2"
+        android:text="home"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="391dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
