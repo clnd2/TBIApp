@@ -27,30 +27,6 @@ public class CaretakerActivity extends AppCompatActivity {
             return insets;
         });
     }
-    public void changeActivity2(View c) {
-        // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
-        String title = ((Button) c).getText().toString();
-        switch (title) {
-            case "?":
-                //?
-                break;
-            case "??":
-                //??
-                break;
-            case "???":
-                //???
-                break;
-            case "Regular Settings":
-                i = new Intent(this, ProfileActivity.class);
-                break;
-            default:
-                i = new Intent(this, CaretakerActivity.class);
-
-        }
-        startActivity(i);
-
-    }
 
 }
