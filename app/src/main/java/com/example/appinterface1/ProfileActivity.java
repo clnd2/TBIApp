@@ -43,6 +43,9 @@ public class ProfileActivity extends AppCompatActivity {
             case "Caretaker Settings":
                 i = new Intent(this, CaretakerActivity.class);
                 break;
+            case "home":
+                i = new Intent(this, MainActivity.class);
+                break;
             default:
                 i = new Intent(this, ProfileActivity.class);
 
