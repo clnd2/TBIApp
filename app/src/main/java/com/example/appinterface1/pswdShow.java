@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.io.*; //Added import
 
 public class pswdShow extends AppCompatActivity {
 
@@ -23,6 +24,28 @@ public class pswdShow extends AppCompatActivity {
             return insets;
         });
     }
+
+    protected void showPSWD() {
+
+     String FILE_NAME = "Password Storage.txt";
+
+     File file = new File(FILE_NAME);
+
+     if(file.exists()) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+     else {
+        System.out.println("File Does Not Exist");
+    }
+}
 
     public void homeScreen(View H) {
         Intent homeScreen = new Intent(this, MainActivity.class);
