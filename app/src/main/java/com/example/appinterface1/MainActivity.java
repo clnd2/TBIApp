@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "Profile":
                 i = new Intent(this, ProfileActivity.class);
-
                 break;
             default:
                 i = new Intent(this, MessagesActivity.class);

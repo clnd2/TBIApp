@@ -31,15 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
         Intent i = null;
         String title = ((Button) p).getText().toString();
         switch (title) {
-            case "Timezone":
-                //drop down menu for timezone
-                break;
-            case "Languages":
-                //drop down menu for languages
-                break;
-            case "Notifications":
-                //turning notifications on and off
-                break;
             case "Caretaker Settings":
                 i = new Intent(this, CaretakerActivity.class);
                 break;
