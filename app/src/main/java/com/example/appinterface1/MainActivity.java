@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
+        Intent i;
         String title = ((Button) v).getText().toString();
         switch (title) {
             case "Calendar":
@@ -46,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
             case "Profile":
                 i = new Intent(this, ProfileActivity.class);
                 break;
+            case "Password Manager":
+                i = new Intent(this, choiceScreen.class);
+                break;
             default:
-                i = new Intent(this, MessagesActivity.class);
+                i = new Intent(this, MainActivity.class);
 
         }
         startActivity(i);
