@@ -59,6 +59,10 @@ public class pswdSave extends AppCompatActivity {
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
+
+        //Screen to show that the password was successfully saved
+        //Intent completeScreen = new Intent(this, );
+        //startActivity(completeScreen);
     }
 
     public void homeScreen(View H) {
