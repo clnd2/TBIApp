@@ -1,6 +1,8 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -135,6 +137,13 @@ public class MessagesActivity extends AppCompatActivity {
         if (executorService != null) {
             executorService.shutdown();
         }
+    }
+
+    public void switchToHome(View v) {
+        // Switch to home screen
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+
     }
 
     public void switchToHome(View v) {
