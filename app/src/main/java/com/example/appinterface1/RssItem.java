@@ -1,12 +1,12 @@
 package com.example.appinterface1;
 // HR: ChatGPT
 public class RssItem {
-    private String title;
+    private CharSequence title;
     private String link;
     private String description;
     private String pubDate;
 
-    public RssItem(String title, String link, String description, String pubDate) {
+    public RssItem(CharSequence title, String link, String description, String pubDate) {
         this.title = title;
         this.link = link;
         this.description = description;
