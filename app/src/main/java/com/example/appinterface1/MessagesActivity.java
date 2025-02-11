@@ -1,6 +1,8 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,12 @@ public class MessagesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void switchToHome(View v) {
+        // Switch to home screen
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+
     }
 }
