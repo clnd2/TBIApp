@@ -3,6 +3,7 @@ package com.example.appinterface1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,28 +30,29 @@ public class pswdSave extends AppCompatActivity {
 
         String FILE_NAME = "Password Storage.txt";
 
-        System.out.print("Enter One Word Description: "); //Needs to be from a text box
-        String detail = scanner.nextLine();
+        //Needs to be from a text box
+        EditText desText = findViewById(R.id.desText);
+        String userDec = desText.getText().toString();
 
-        System.out.print("Enter Username (Case Sensitive): "); //Needs to be from a text box
-        String userName = scanner.nextLine();
+        //Needs to be from a text box
+        EditText userText = findViewById(R.id.userText);
+        String userNam = userText.getText().toString();
 
-        System.out.print("Enter Password (Case Sensitive): "); //Needs to be from a text box
-        String userPass = scanner.nextLine();
-
-        //R.id.textveiw8
+        //Needs to be from a text box
+        EditText passText = findViewById(R.id.passText);
+        String userPass = passText.getText().toString();
 
         File file = new File(FILE_NAME);
         try {
             if (file.exists()) {
                 try (FileWriter writer = new FileWriter(file, true)) {
-                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", detail, userName, userPass);
+                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
                     writer.write("\n" + passWD);
                 }
             }
             else {
                 try (FileWriter writer = new FileWriter(file)) {
-                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", detail, userName, userPass);
+                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
                     writer.write(passWD);
                 }
             }
