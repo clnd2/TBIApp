@@ -10,50 +10,49 @@
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_width="173dp"
+        android:layout_height="69dp"
         android:onClick="homeScreen"
         android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passText" />
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="591dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/desText"
-        android:layout_width="159dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginBottom="84dp"
+        android:layout_width="285dp"
+        android:layout_height="70dp"
+        android:ems="10"
+        android:inputType="text"
         android:text="Description"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/userText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="55dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/userText"
-        android:layout_width="169dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="85dp"
+        android:layout_width="286dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:inputType="text"
         android:text="Username"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/passText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desText" />
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="210dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/passText"
-        android:layout_width="162dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="104dp"
+        android:layout_width="291dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:inputType="text"
         android:text="Password"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/button10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userText" />
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="343dp" />
+
+    <Button
+        android:id="@+id/Store"
+        android:layout_width="171dp"
+        android:layout_height="81dp"
+        android:text="Save"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="457dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
