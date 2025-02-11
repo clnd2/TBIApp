@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,37 +15,37 @@
         android:theme="@style/Theme.AppInterface1"
         tools:targetApi="31" >
         <activity
-            android:name=".setReminders"
+            android:name="com.example.appinterface1.setReminders"
             android:exported="false" />
         <activity
-            android:name=".ShowRemindersActivity"
+            android:name="com.example.appinterface1.ShowRemindersActivity"
             android:exported="false" />
         <activity
-            android:name=".pswdShow"
+            android:name="com.example.appinterface1.pswdShow"
             android:exported="false" />
         <activity
-            android:name=".pswdSave"
+            android:name="com.example.appinterface1.pswdSave"
             android:exported="false" />
         <activity
-            android:name=".choiceScreen"
+            android:name="com.example.appinterface1.choiceScreen"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="com.example.appinterface1.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MessagesActivity"
+            android:name="com.example.appinterface1.MessagesActivity"
             android:exported="false" />
         <activity
-            android:name=".GamesActivity"
+            android:name="com.example.appinterface1.GamesActivity"
             android:exported="false" />
         <activity
-            android:name=".RemindersActivity"
+            android:name="com.example.appinterface1.RemindersActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarActivity"
+            android:name="com.example.appinterface1.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.appinterface1.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
