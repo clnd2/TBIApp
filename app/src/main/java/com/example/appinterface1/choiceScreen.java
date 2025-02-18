@@ -11,6 +11,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class choiceScreen extends AppCompatActivity {
 
     @Override
@@ -37,7 +42,7 @@ public class choiceScreen extends AppCompatActivity {
             startActivity(showScreen);
         }
         else {
-            System.out.println("There was a problem.");
+            System.out.println("There was an Issue.");
         }
     }
 

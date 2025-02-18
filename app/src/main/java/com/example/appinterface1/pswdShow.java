@@ -23,9 +23,29 @@ public class pswdShow extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //showPSWD()
+        String FILE_NAME = "Password Storage.txt";
+
+        File file = new File(FILE_NAME);
+
+        if(file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Error reading file: " + e.getMessage());
+            }
+        }
+        else {
+            System.out.println("File Does Not Exist");
+        }
     }
 
-    protected void showPSWD() {
+   /* protected void showPSWD() {
 
      String FILE_NAME = "Password Storage.txt";
 
@@ -45,7 +65,7 @@ public class pswdShow extends AppCompatActivity {
      else {
         System.out.println("File Does Not Exist");
     }
-}
+}*/
 
     public void homeScreen(View H) {
         Intent homeScreen = new Intent(this, MainActivity.class);

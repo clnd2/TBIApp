@@ -10,43 +10,57 @@
     <Button
         android:id="@+id/button"
         android:layout_width="144dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="118dp"
         android:onClick="selectOptions"
         android:text="Save"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="171dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="121dp"
-        android:layout_height="76dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="154dp"
         android:onClick="selectOptions"
         android:text="Show"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
         android:onClick="homeScreen"
         android:text="Home"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="618dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="152dp"
         android:text="Select the Save button to Store a Password to Look at Later"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="152dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Show to Display All Saved Passwords"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="369dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
