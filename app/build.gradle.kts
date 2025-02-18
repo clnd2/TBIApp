@@ -42,5 +42,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.recyclerview)
     implementation(libs.okhttp)
+    implementation(libs.okhttp.v4120)
     implementation(libs.material.v140)
 }

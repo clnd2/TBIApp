@@ -145,11 +145,4 @@ public class MessagesActivity extends AppCompatActivity {
         startActivity(i);
 
     }
-
-    public void switchToHome(View v) {
-        // Switch to home screen
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-
-    }
 }
