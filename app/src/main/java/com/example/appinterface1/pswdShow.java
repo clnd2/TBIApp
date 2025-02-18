@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.*; //Added import
+import java.io.File; //Added import
+import java.io.FileNotFoundException; //Added Import
+import java.util.Scanner; //Added Import
 
 public class pswdShow extends AppCompatActivity {
 
@@ -25,24 +27,20 @@ public class pswdShow extends AppCompatActivity {
         });
 
         //showPSWD()
-        String FILE_NAME = "Password Storage.txt";
+        File psdStorage = new File("Password Storage.txt");
 
-        File file = new File(FILE_NAME);
+       try {
+           Scanner myReader = new Scanner(psdStorage);
+           while (myReader.hasNextLine()) {
+               String data = myReader.nextLine();
+               System.out.println(data);
+           }
+           myReader.close();
 
-        if(file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            }
-            catch (IOException e) {
-                System.out.println("Error reading file: " + e.getMessage());
-            }
-        }
-        else {
-            System.out.println("File Does Not Exist");
-        }
+       } catch (FileNotFoundException e) {
+           System.out.println("An Error Occured Trying to Read the File");
+           e.printStackTrace();
+       }
     }
 
    /* protected void showPSWD() {

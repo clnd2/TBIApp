@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.*; //Added import
+import java.io.File; //Added Import
+import java.io.IOException; //Added Import
+import java.io.FileWriter; //Added Import
 
 public class pswdSave extends AppCompatActivity {
 
@@ -28,7 +30,19 @@ public class pswdSave extends AppCompatActivity {
 
     protected void savePSWD() {
 
-        String FILE_NAME = "Password Storage.txt";
+        File psdStore = new File("Password Storage.txt");
+
+        try {
+            if (!psdStore.exists()) {
+                psdStore.createNewFile();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error Happened Trying to Create File");
+            e.printStackTrace();
+        }
+
+        System.out.println("File Created"); //To show that the file was created
 
         //Needs to be from a text box
         EditText desText = findViewById(R.id.desText);
@@ -42,27 +56,16 @@ public class pswdSave extends AppCompatActivity {
         EditText passText = findViewById(R.id.passText);
         String userPass = passText.getText().toString();
 
-        File file = new File(FILE_NAME);
         try {
-            if (file.exists()) {
-                try (FileWriter writer = new FileWriter(file, true)) {
-                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
-                    writer.write("\n" + passWD);
-                }
-            }
-            else {
-                try (FileWriter writer = new FileWriter(file)) {
-                    String passWD = String.format("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
-                    writer.write(passWD);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-        }
+            FileWriter myWriter = new FileWriter("Password Storage.txt");
+            myWriter.write("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
+            myWriter.close();
+            System.out.println("Successfully Wrote to File");
 
-        //Screen to show that the password was successfully saved
-        //Intent completeScreen = new Intent(this, );
-        //startActivity(completeScreen);
+        } catch (IOException e) {
+            System.out.println("Error Happened Trying to Write File");
+            e.printStackTrace();
+        }
     }
 
     public void homeScreen(View H) {
