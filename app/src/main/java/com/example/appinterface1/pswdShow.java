@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added import
 import java.io.FileNotFoundException; //Added Import
 import java.util.Scanner; //Added Import
+import android.widget.TextView; //Added Import
 
 public class pswdShow extends AppCompatActivity {
 
@@ -28,12 +29,14 @@ public class pswdShow extends AppCompatActivity {
 
         //showPSWD()
         File psdStorage = new File("Password Storage.txt");
+        TextView visiblePSWD = findViewById(R.id.fileShow);
 
        try {
            Scanner myReader = new Scanner(psdStorage);
            while (myReader.hasNextLine()) {
                String data = myReader.nextLine();
-               System.out.println(data);
+               //System.out.println(data);
+               visiblePSWD.setText(data);
            }
            myReader.close();
 
