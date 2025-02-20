@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added Import
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException; //Added Import
 import java.io.FileWriter; //Added Import
+import java.io.BufferedWriter; //Added Import
 
 public class pswdSave extends AppCompatActivity {
 
@@ -30,7 +34,8 @@ public class pswdSave extends AppCompatActivity {
 
     protected void savePSWD() {
 
-        File psdStore = new File("Password Storage.txt");
+        String fileName = "Documents\\Password Storage.txt";
+        File psdStore = new File(fileName);
 
         try {
                 boolean fileCheck = psdStore.createNewFile();
@@ -62,23 +67,29 @@ public class pswdSave extends AppCompatActivity {
         EditText passText = findViewById(R.id.passText);
         String userPass = passText.getText().toString();
 
-        try {
-            FileWriter myWriter = new FileWriter("Password Storage.txt");
-            String first = ("Detail: " + userDec);
-            String second = ("\nUsername: " + userNam);
-            String third = ("\nPassword: " + userPass);
-            myWriter.write(first + second + third);
-            myWriter.close();
-            System.out.println("Successfully Wrote to File");
+        //Formulating the message
+        String first = ("Detail: " + userDec);
+        String second = ("\nUsername: " + userNam);
+        String third = ("\nPassword: " + userPass);
+        String content = (first + second + third);
 
-        } catch (IOException e) {
-            System.out.println("Error Happened Trying to Write File");
-            e.printStackTrace();
-        }
+        writeToFile("Password Storage.txt", content);
     }
 
     public void homeScreen(View H) {
         Intent homeScreen = new Intent(this, MainActivity.class);
         startActivity(homeScreen);
+    }
+
+    public void writeToFile(String filename, String content) {
+        File path = getApplicationContext().getFilesDir();
+        try {
+            FileOutputStream writer = new FileOutputStream(new File(path, filename));
+            writer.write(content.getBytes());
+            writer.close();
+            Toast.makeText(getApplicationContext(), "Wrote to file: " + filename, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
