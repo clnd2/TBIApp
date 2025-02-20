@@ -11,7 +11,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added import
 import java.io.FileInputStream;
-import java.io.FileNotFoundException; //Added Import
 //import java.util.Scanner; //Added Import
 import android.widget.TextView; //Added Import
 
