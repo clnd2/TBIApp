@@ -35,6 +35,14 @@ public class pswdSave extends AppCompatActivity {
         try {
                 boolean fileCheck = psdStore.createNewFile();
 
+                if (fileCheck) {
+                    System.out.println("File did not exist and was created");
+                }
+
+                else {
+                    System.out.println("File already exists, appending file.");
+                }
+
         } catch (IOException e) {
             System.out.println("Error Happened Trying to Create File");
             e.printStackTrace();
