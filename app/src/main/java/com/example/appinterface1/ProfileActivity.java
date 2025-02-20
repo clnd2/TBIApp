@@ -25,24 +25,23 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void changeActivity(View p) {
+    public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
-        String title = ((Button) p).getText().toString();
-        switch (title) {
-            case "Caretaker Settings":
-                i = new Intent(this, CaretakerActivity.class);
-                break;
-            case "home":
-                i = new Intent(this, MainActivity.class);
-                break;
-            default:
-                i = new Intent(this, ProfileActivity.class);
+        Intent i;
+        int id = v.getId();
 
+        // if-else instead of switch-case because of non-final nature of resource IDs
+        if (id == R.id.caretakerButton) {
+            i = new Intent(this, CaretakerActivity.class);
+        } else if (id == R.id.homeButton) {
+            i = new Intent(this, MainActivity.class);
+        } else {
+            i = new Intent(this, ProfileActivity.class);
         }
-        startActivity(i);
 
+        // start activity
+        startActivity(i);
     }
 }
 

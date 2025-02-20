@@ -27,30 +27,23 @@ public class CaretakerActivity extends AppCompatActivity {
             return insets;
         });
     }
-    public void changeActivity2(View c) {
+    public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
-        Intent i = null;
-        String title = ((Button) c).getText().toString();
-        switch (title) {
-            case "?":
-                //?
-                break;
-            case "??":
-                //??
-                break;
-            case "home":
-                i = new Intent(this, MainActivity.class);
-                break;
-            case "Regular Settings":
-                i = new Intent(this, ProfileActivity.class);
-                break;
-            default:
-                i = new Intent(this, CaretakerActivity.class);
+        Intent i;
+        int id = v.getId();
 
+        // if-else instead of switch-case because of non-final nature of resource IDs
+        if (id == R.id.settingsButton) {
+            i = new Intent(this, ProfileActivity.class);
+        } else if (id == R.id.homeButton2) {
+            i = new Intent(this, MainActivity.class);
+        } else {
+            i = new Intent(this, CaretakerActivity.class);
         }
-        startActivity(i);
 
+        // start activity
+        startActivity(i);
     }
 
 }
