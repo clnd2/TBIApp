@@ -38,7 +38,7 @@ public class pswdShow extends AppCompatActivity {
            myReader.close();
 
        } catch (FileNotFoundException e) {
-           System.out.println("An Error Occured Trying to Read the File");
+           System.out.println("An Error Occurred Trying to Read the File");
            e.printStackTrace();
        }
     }

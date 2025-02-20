@@ -33,9 +33,7 @@ public class pswdSave extends AppCompatActivity {
         File psdStore = new File("Password Storage.txt");
 
         try {
-            if (!psdStore.exists()) {
-                psdStore.createNewFile();
-            }
+                boolean fileCheck = psdStore.createNewFile();
 
         } catch (IOException e) {
             System.out.println("Error Happened Trying to Create File");
@@ -58,7 +56,10 @@ public class pswdSave extends AppCompatActivity {
 
         try {
             FileWriter myWriter = new FileWriter("Password Storage.txt");
-            myWriter.write("Detail: %s\nUsername: %s\nPassword: %s\n", userDec, userNam, userPass);
+            String first = ("Detail: " + userDec);
+            String second = ("\nUsername: " + userNam);
+            String third = ("\nPassword: " + userPass);
+            myWriter.write(first + second + third);
             myWriter.close();
             System.out.println("Successfully Wrote to File");
 
