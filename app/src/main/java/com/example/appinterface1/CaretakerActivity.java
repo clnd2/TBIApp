@@ -28,7 +28,7 @@ public class CaretakerActivity extends AppCompatActivity {
         });
     }
     public void changeActivity(View v) {
-        // when a button in main menu is pressed, will switch to corresponding activity.
+        // when a button in main menu is pressed, will switch to corresponding activity
 
         Intent i;
         int id = v.getId();
