@@ -11,10 +11,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added import
 import java.io.FileInputStream;
-//import java.util.Scanner; //Added Import
 import android.widget.TextView; //Added Import
+import android.util.Log; //Added Import
 
 public class pswdShow extends AppCompatActivity {
+
+    //Global Variables
+    String fileName = "PasswordList.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class pswdShow extends AppCompatActivity {
 
         //showPSWD()
         TextView text = findViewById(R.id.fileShow);
-        String data = readFromFile("Password Storage.txt");
+        String data = readFromFile(fileName);
         text.setText(data);
     }
 
@@ -78,7 +81,7 @@ public class pswdShow extends AppCompatActivity {
     }
 
     public String readFromFile(String fileName) {
-        File path = getApplicationContext().getFilesDir();
+        File path = getFilesDir();
         File readFrom = new File(path, fileName);
         byte[] content = new byte[(int) readFrom.length()];
         try {
@@ -86,7 +89,7 @@ public class pswdShow extends AppCompatActivity {
             stream.read(content);
             return new String(content);
         } catch (Exception e) {
-            System.out.println("There was an error reading file in the try block.");
+            Log.d("TAG", "There was an error reading file in the try block.");
             throw new RuntimeException(e);
         }
     }

@@ -2,7 +2,6 @@ package com.example.appinterface1;
 //import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-//import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,13 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added Import
-import java.io.FileOutputStream;
+import java.io.FileOutputStream; //Added Import
 import java.io.IOException; //Added Import
+import android.util.Log; //Added Import
 
 public class pswdSave extends AppCompatActivity {
 
     //Global Variables
-    String fileName = "PasswordList.txt";
+    String fileName = "Password List.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +32,38 @@ public class pswdSave extends AppCompatActivity {
         });
     }
 
+    //Testing if the file existing works and if the append works, if not take out the fileCheck and the if statement leaving everything in the else
     public void CreateAndWriteFile(String fileName, String Content) {
-        try {
-            //Getting the file path
-            File path = getFilesDir();
+        //Checks to see if the file already exists
+        File fileCheck = new File(getApplicationContext().getFilesDir(), fileName);
 
-            //Create the file
-            File fileP = new File(path, fileName);
-            FileOutputStream fOut = new FileOutputStream(fileP);
+        //If it already exists then just append
+        if (fileCheck.exists()) {
+            Log.d("TAG", "The file already exists append.");
 
-            //Write to the file
-            fOut.write(Content.getBytes());
-            fOut.close();
-            Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
+          //If it does not exist then create and write to
+        } else {
+            try {
+                //Getting the file path
+                File path = getFilesDir();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+                //Create the file
+                File fileP = new File(path, fileName);
+                FileOutputStream fos = new FileOutputStream(fileP);
+
+                //Write to the file
+                fos.write(Content.getBytes());
+                fos.close();
+                Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "The file was created and written to.");
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    protected void savePSWD() {
+    public void savePSWD(View view) {
         //Needs to be from a text box
         EditText desText = findViewById(R.id.desText);
         String userDec = desText.getText().toString();
@@ -72,6 +84,10 @@ public class pswdSave extends AppCompatActivity {
 
         //Function that creates and writes to the file
         CreateAndWriteFile(fileName, content);
+
+        //Go back to the choice screen after saved password
+        Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
+        startActivity(choiceScreen);
     }
 
     public void homeScreen(View H) {
@@ -80,24 +96,3 @@ public class pswdSave extends AppCompatActivity {
     }
 
 }
-
-/*String fileName = "Documents\\Password Storage.txt";
-File psdStore = new File(fileName);
-
-        try {
-boolean fileCheck = psdStore.createNewFile();
-
-                if (fileCheck) {
-        System.out.println("File did not exist and was created");
-                }
-
-                        else {
-                        System.out.println("File already exists, appending file.");
-                }
-
-                        } catch (IOException e) {
-        System.out.println("Error Happened Trying to Create File");
-            e.printStackTrace();
-        }
-
-                System.out.println("File Created"); //To show that the file was created*/
