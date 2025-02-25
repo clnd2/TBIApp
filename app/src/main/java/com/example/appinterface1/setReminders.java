@@ -15,13 +15,17 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.app.DatePickerDialog;
 
 //added
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.*;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.app.TimePickerDialog;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 
@@ -77,12 +81,10 @@ public class setReminders extends AppCompatActivity {
         String loc = location.getText().toString();
 
         //get the text of the date
-        EditText date = findViewById(R.id.uiDate);
-        String dat = date.getText().toString();
+        String dat = getSavedDate();
 
         //get the text of the time
-        EditText time = findViewById(R.id.uiTime);
-        String tim = time.getText().toString();
+        String tim = getSavedTime();
 
         //create an ICAL file
         StringBuilder icsContent = new StringBuilder();
@@ -90,7 +92,7 @@ public class setReminders extends AppCompatActivity {
         icsContent.append("Version:2.0\n");
         icsContent.append("BEGIN:VEVENT\n");
         icsContent.append("SUMMARY:" + tit + "\n");
-        icsContent.append("DTSTART;TZID=America/Denver:" + dat + "T" + tim +"\n");
+        icsContent.append("DTSTART;TZID=America/Denver:" + dat + "T" + tim + "00" + "\n");
         icsContent.append("DTEND;TZID=America/Denver:\n");
         icsContent.append("LOCATION:" + loc + "\n");
         icsContent.append("DESCRIPTION:" + desc + "\n");
@@ -117,28 +119,110 @@ public class setReminders extends AppCompatActivity {
 
             Log.d("ICS", "ICS file saved at: " + icsFile.getAbsolutePath());
 
-            //Debug to make sure the content is being saved
-            //TextView textView = findViewById(R.id.textTitle);
-            //textView.setText(icsContent);
-
             }
         catch (IOException e)
             {
             Log.e("ICS", "Error saving ICS file: " + e.getMessage());
             }
 
-        // Display content in TextView
-
     }
 
-    public void selectDate (View v)
+    public void selectDate(View v)
     {
+        showDatePicker();
+    }
 
-        // Get the current date
+    private void showDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    String selectedDate = selectedYear + "" + (selectedMonth + 1) + "" + selectedDay;
+
+                    TextView textDateSelected = findViewById(R.id.textDateSelected);
+                    textDateSelected.setText("Selected Date: " + (selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);;
+
+                    // Save the selected date
+                    saveDate(selectedDate);
+                },
+                year, month, day
+        );
+
+        datePickerDialog.show();
     }
+
+    private void saveDate(String date) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("selected_date", date);
+        editor.apply();
+    }
+
+    private String getSavedDate() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("selected_date", "");
+    }
+
+    public void selectTime(View v)
+    {
+        showTimePicker();
+    }
+
+    private void showTimePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+
+                        String amPm;
+                        int hour12;
+                        int hour24;
+
+                        // Convert to 12-hour format
+                        if (selectedHour >= 12) {
+                            amPm = "PM";
+                            hour12 = selectedHour == 12 ? 12 : selectedHour - 12;
+                            hour24 = selectedHour;
+                        } else {
+                            amPm = "AM";
+                            hour12 = selectedHour == 0 ? 12 : selectedHour;
+                            hour24 = selectedHour;
+                        }
+
+
+                        String selectedTime = String.format("%02d%02d", hour24, selectedMinute);
+
+
+                        TextView textTimeSelected = findViewById(R.id.textTimeSelected);
+                        textTimeSelected.setText("Selected Time: " + hour12 + ":" + selectedMinute + " " + amPm);
+
+                        // Save the selected time
+                        saveTime(selectedTime);
+                    }
+                }, hour, minute, false); // false for 24-hour format
+
+        timePickerDialog.show();
+    }
+
+    private void saveTime(String time) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("selected_time", time);
+        editor.apply();
+    }
+
+    private String getSavedTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("selected_time", "");
+    }
+
+
 }
