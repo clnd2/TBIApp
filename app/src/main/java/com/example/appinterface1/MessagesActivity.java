@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.media3.common.util.Log;
+import androidx.media3.common.util.UnstableApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,12 +58,14 @@ public class MessagesActivity extends AppCompatActivity {
         executorService = Executors.newSingleThreadExecutor();
 
         // Fetch RSS Feed
-        fetchRssFeed("https://feeds.bbci.co.uk/news/world/rss.xml");  // Replace with a valid RSS feed URL
+        fetchRssFeed("https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRzF1YlRJU0FtVnVLQUFQAQ");  // Replace with a valid RSS feed URL
     }
 
+    @OptIn(markerClass = UnstableApi.class)
     private void fetchRssFeed(String urlString) {
         executorService.execute(() -> {
             List<RssItem> rssItems = fetchRssData(urlString);
+            Log.d("RssFeed", "Items received from fetchRssData: " + rssItems.size());
             runOnUiThread(() -> {
                 rssItemList.clear();
                 rssItemList.addAll(rssItems);
@@ -69,8 +74,10 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
+    @OptIn(markerClass = UnstableApi.class)
     private List<RssItem> fetchRssData(String urlString) {
         List<RssItem> rssItems = new ArrayList<>();
+        Log.d("RssFeed", "Starting fetchRssData");
         try {
             // Fetch the RSS feed using OkHttp
             OkHttpClient client = new OkHttpClient();
