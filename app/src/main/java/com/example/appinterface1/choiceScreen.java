@@ -37,6 +37,10 @@ public class choiceScreen extends AppCompatActivity {
             Intent showScreen = new Intent(this, pswdShow.class);
             startActivity(showScreen);
         }
+        else if (title.equals("Edit")) {
+            Intent editScreen = new Intent(this, pswdEdit.class);
+            startActivity(editScreen);
+        }
         else {
             System.out.println("There was an Issue.");
         }

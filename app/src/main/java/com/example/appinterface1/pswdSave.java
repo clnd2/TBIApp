@@ -34,22 +34,13 @@ public class pswdSave extends AppCompatActivity {
 
     //Testing if the file existing works and if the append works, if not take out the fileCheck and the if statement leaving everything in the else
     public void CreateAndWriteFile(String fileName, String Content) {
-        //Checks to see if the file already exists
-        File fileCheck = new File(getApplicationContext().getFilesDir(), fileName);
-
-        //If it already exists then just append
-        if (fileCheck.exists()) {
-            Log.d("TAG", "The file already exists append.");
-
-          //If it does not exist then create and write to
-        } else {
             try {
                 //Getting the file path
                 File path = getFilesDir();
 
                 //Create the file
                 File fileP = new File(path, fileName);
-                FileOutputStream fos = new FileOutputStream(fileP);
+                FileOutputStream fos = new FileOutputStream(fileP, true);
 
                 //Write to the file
                 fos.write(Content.getBytes());
@@ -61,7 +52,6 @@ public class pswdSave extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
         }
-    }
 
     public void savePSWD(View view) {
         //Needs to be from a text box
@@ -79,7 +69,7 @@ public class pswdSave extends AppCompatActivity {
         //Formulating the message
         String first = ("Detail: " + userDec);
         String second = ("\nUsername: " + userNam);
-        String third = ("\nPassword: " + userPass);
+        String third = ("\nPassword: " + userPass + "\n\n");
         String content = (first + second + third);
 
         //Function that creates and writes to the file

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppInterface1"
         tools:targetApi="31">
         <activity
+            android:name=".pswdEdit"
+            android:exported="false" />
+        <activity
             android:name=".pswdShow"
             android:exported="false" />
         <activity

@@ -17,7 +17,7 @@ import android.util.Log; //Added Import
 public class pswdShow extends AppCompatActivity {
 
     //Global Variables
-    String fileName = "PasswordList.txt";
+    String fileName = "Password List.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,45 +35,6 @@ public class pswdShow extends AppCompatActivity {
         String data = readFromFile(fileName);
         text.setText(data);
     }
-
-   /* protected void showPSWD() {
-
-     String FILE_NAME = "Password Storage.txt";
-
-     File file = new File(FILE_NAME);
-
-     if(file.exists()) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        }
-        catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
-    }
-     else {
-        System.out.println("File Does Not Exist");
-    }
-}*/
-
-    /*File psdStorage = new File("Password Storage.txt");
-    TextView visiblePSWD = findViewById(R.id.fileShow);
-
-       try {
-        Scanner myReader = new Scanner(psdStorage);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            //System.out.println(data);
-            visiblePSWD.setText(data);
-        }
-        myReader.close();
-
-    } catch (FileNotFoundException e) {
-        System.out.println("An Error Occurred Trying to Read the File");
-        e.printStackTrace();
-    }*/
 
     public void homeScreen(View H) {
         Intent homeScreen = new Intent(this, MainActivity.class);
