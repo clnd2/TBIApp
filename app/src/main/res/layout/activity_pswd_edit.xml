@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="New Username"
+        android:text="Username"
         app:layout_constraintBottom_toTopOf="@+id/editUserName"
         app:layout_constraintStart_toStartOf="@+id/editUserName" />
 
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="New Password"
+        android:text="Password"
         app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintStart_toStartOf="@+id/editPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

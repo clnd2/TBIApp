@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added import
 import java.io.FileInputStream;
+import java.util.Objects;
+
 import android.widget.TextView; //Added Import
 import android.util.Log; //Added Import
 
@@ -33,6 +35,8 @@ public class pswdShow extends AppCompatActivity {
         //showPSWD()
         TextView text = findViewById(R.id.fileShow);
         String data = readFromFile(fileName);
+
+        //Keep below here
         text.setText(data);
     }
 
