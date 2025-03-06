@@ -17,9 +17,7 @@ import java.io.File; //Added Import
 import java.io.FileOutputStream; //Added Import
 import java.io.FileInputStream; //Added Import
 import java.io.IOException; //Added Import
-import java.nio.file.Files;
-import java.util.Objects;
-
+import java.util.Objects; //Added Import
 import android.util.Log; //Added Import
 
 public class pswdEdit extends AppCompatActivity {
@@ -38,6 +36,7 @@ public class pswdEdit extends AppCompatActivity {
 
     //Function that does the password changes
     public void changePassword (String changeDec, String changeNam, String changePass, String fileName) {
+        int editCheck = 0;
         String oldNam = "";
         String oldPass = "";
         String data = readFromFile(fileName);
@@ -45,24 +44,57 @@ public class pswdEdit extends AppCompatActivity {
         //Split data into words to find what to change
         String[] words = data.split(" ");
 
-        //Using description to find the username and password to change, Need to figure out how to get the username and pass from the word list
-        for (String word : words) {
-            Log.d("TAG", word); //Delete for string testing
-            if (Objects.equals(word, changeDec)) {
+        //Using description to find the username and password to change
+        for (int i = 0; i < words.length; i++) {
+            if (Objects.equals(words[i], changeDec)) {
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-                //oldNam = word[+2];
-                //oldPass = word[+2];
+                oldNam = words[i + 3];
+                oldPass = words[i + 5];
+                Log.d("TAG", oldNam); //Delete for string testing
+                Log.d("TAG", oldPass); //Delete for string testing
+
+                //Changing the data in the file
+                String namChange = data.replace(oldNam, changeNam);
+                String editContent = namChange.replace(oldPass, changePass);
+                Log.d("TAG", editContent); //Delete for string testing
+
+                //Delete the file that had the old data, Does not work
+                //File oldData
+                //fileName.split();
+
+                //Create a new file that has the new information
+                //CreateAndWriteFile(fileName, editContent);
+                editCheck = 1; //Variable to know if the password does not exist and needs to be added
             }
         }
 
-        //String namChange = data.replace(oldNam, changeNam);
-        //String contentChange = namChange.replace(oldPass, changePass);
+        if (editCheck != 1) {
+            //That password does not exist so adding to the password file
+            //Create the data string
+            String first = ("Detail: " + changeDec);
+            String second = ("\nUsername: " + changeNam);
+            String third = ("\nPassword: " + changePass + "\n\n");
+            String content = (first + second + third);
 
-        //Log.d("TAG", contentChange); //Delete for string testing
+            //Add to the file
+            try {
+                //Getting the file path
+                File path = getFilesDir();
 
-        //deleteFile(fileName);
+                //Create the file
+                File fileP = new File(path, fileName);
+                FileOutputStream fos = new FileOutputStream(fileP, true);
 
-        //CreateAndWriteFile(fileName, changeContent);
+                //Write to the file
+                fos.write(content.getBytes());
+                fos.close();
+                Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "The file was written to.");
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public String readFromFile(String fileName) {
@@ -79,7 +111,7 @@ public class pswdEdit extends AppCompatActivity {
         }
     }
 
-    /*public void CreateAndWriteFile(String fileName, String Content) {
+    public void CreateAndWriteFile(String fileName, String Content) {
         try {
             //Getting the file path
             File path = getFilesDir();
@@ -97,28 +129,25 @@ public class pswdEdit extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 
     public void editPSWD(View view) {
 
         String fileName = "Password List.txt";
 
         EditText desText = findViewById(R.id.editDescription);
-        //String changeDec = desText.getText().toString();
+        String changeDec = desText.getText().toString();
 
         EditText userText = findViewById(R.id.editUserName);
-        //String changeNam = userText.getText().toString();
+        String changeNam = userText.getText().toString();
 
         EditText passText = findViewById(R.id.editPassword);
-        //String changePass = passText.getText().toString();
-
-        String changeDec = "testq"; //For testing
-        String changeNam = "secondBDub"; //For testing
-        String changePass = "thirdRob"; //For testing
+        String changePass = passText.getText().toString();
 
         changePassword(changeDec, changeNam, changePass, fileName);
     }
 
+    //To delete file but may not need and will be deleted
     /*public void deleteFile(String fileName){ Only for is the delete file function does not work
         File path = getFilesDir();
         File fileP = new File(path, fileName);
