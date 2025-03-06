@@ -40,13 +40,14 @@ public class pswdEdit extends AppCompatActivity {
         String oldNam = "";
         String oldPass = "";
         String data = readFromFile(fileName);
+        //Log.d("TAG", data); //Delete for string testing
 
         //Split data into words to find what to change
         String[] words = data.split(" ");
-
+        Log.d("TAG", "Going into for loop"); //Delete for string testing
         //Using description to find the username and password to change
         for (int i = 0; i < words.length; i++) {
-            if (Objects.equals(words[i], changeDec)) {
+            if (words[i].equals(changeDec)) { //This if statement is not working for the string compare
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
                 oldNam = words[i + 3];
                 oldPass = words[i + 5];
@@ -70,6 +71,7 @@ public class pswdEdit extends AppCompatActivity {
 
         if (editCheck != 1) {
             //That password does not exist so adding to the password file
+            /*Log.d("TAG", "Password not there creating now."); //Delete for string testing
             //Create the data string
             String first = ("Detail: " + changeDec);
             String second = ("\nUsername: " + changeNam);
@@ -93,8 +95,12 @@ public class pswdEdit extends AppCompatActivity {
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
         }
+
+        //Go back to the choice screen after edit password
+        Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
+        startActivity(choiceScreen);
     }
 
     public String readFromFile(String fileName) {
