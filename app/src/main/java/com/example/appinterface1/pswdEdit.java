@@ -36,7 +36,6 @@ public class pswdEdit extends AppCompatActivity {
 
     //Function that does the password changes
     public void changePassword (String changeDec, String changeNam, String changePass, String fileName) {
-        int editCheck = 0;
         String oldNam = "";
         String oldPass = "";
         String data = readFromFile(fileName);
@@ -45,9 +44,11 @@ public class pswdEdit extends AppCompatActivity {
         //Split data into words to find what to change
         String[] words = data.split(" ");
         Log.d("TAG", "Going into for loop"); //Delete for string testing
+        Log.d("TAG", changeDec); //Delete for string testing
         //Using description to find the username and password to change
         for (int i = 0; i < words.length; i++) {
-            if (words[i].equals(changeDec)) { //This if statement is not working for the string compare
+            Log.d("TAG", words[i]); //Delete for string testing
+            if (Objects.equals(words[i], changeDec)) { //This if statement is not working for the string compare START WORK HERE
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
                 oldNam = words[i + 3];
                 oldPass = words[i + 5];
@@ -65,12 +66,11 @@ public class pswdEdit extends AppCompatActivity {
 
                 //Create a new file that has the new information
                 //CreateAndWriteFile(fileName, editContent);
-                editCheck = 1; //Variable to know if the password does not exist and needs to be added
+                break;
             }
-        }
-
-        if (editCheck != 1) {
-            //That password does not exist so adding to the password file
+            else{
+                Log.d("TAG", "Password not found"); //Delete for string testing
+                //That password does not exist so adding to the password file
             /*Log.d("TAG", "Password not there creating now."); //Delete for string testing
             //Create the data string
             String first = ("Detail: " + changeDec);
@@ -96,6 +96,7 @@ public class pswdEdit extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }*/
+            }
         }
 
         //Go back to the choice screen after edit password
@@ -138,7 +139,7 @@ public class pswdEdit extends AppCompatActivity {
     }
 
     public void editPSWD(View view) {
-
+        Log.d("TAG", "Edit password called");
         String fileName = "Password List.txt";
 
         EditText desText = findViewById(R.id.editDescription);
