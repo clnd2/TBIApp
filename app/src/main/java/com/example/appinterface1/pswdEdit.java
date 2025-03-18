@@ -71,31 +71,31 @@ public class pswdEdit extends AppCompatActivity {
             else{
                 Log.d("TAG", "Password not found"); //Delete for string testing
                 //That password does not exist so adding to the password file
-            /*Log.d("TAG", "Password not there creating now."); //Delete for string testing
-            //Create the data string
-            String first = ("Detail: " + changeDec);
-            String second = ("\nUsername: " + changeNam);
-            String third = ("\nPassword: " + changePass + "\n\n");
-            String content = (first + second + third);
+                /*Log.d("TAG", "Password not there creating now."); //Delete for string testing
+                //Create the data string
+                String first = ("Detail: " + changeDec);
+                String second = ("\nUsername: " + changeNam);
+                String third = ("\nPassword: " + changePass + "\n\n");
+                String content = (first + second + third);
 
-            //Add to the file
-            try {
-                //Getting the file path
-                File path = getFilesDir();
+                //Add to the file
+                try {
+                    //Getting the file path
+                    File path = getFilesDir();
 
-                //Create the file
-                File fileP = new File(path, fileName);
-                FileOutputStream fos = new FileOutputStream(fileP, true);
+                    //Create the file
+                    File fileP = new File(path, fileName);
+                    FileOutputStream fos = new FileOutputStream(fileP, true);
 
-                //Write to the file
-                fos.write(content.getBytes());
-                fos.close();
-                Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "The file was written to.");
+                    //Write to the file
+                    fos.write(content.getBytes());
+                    fos.close();
+                    Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "The file was written to.");
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }*/
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }*/
             }
         }
 
