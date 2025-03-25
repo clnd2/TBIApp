@@ -2,6 +2,7 @@ package com.example.appinterface1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -39,6 +40,9 @@ public class pswdShow extends AppCompatActivity {
 
         //Keep below here
         text.setText(data);
+
+        //Make the scroll for the passwords
+        text.setMovementMethod(new ScrollingMovementMethod());
     }
 
     public void homeScreen(View H) {

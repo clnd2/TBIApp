@@ -17,6 +17,7 @@ import java.io.File; //Added Import
 import java.io.FileOutputStream; //Added Import
 import java.io.FileInputStream; //Added Import
 import java.io.IOException; //Added Import
+import java.util.Arrays;
 import java.util.Objects; //Added Import
 import android.util.Log; //Added Import
 
@@ -36,22 +37,32 @@ public class pswdEdit extends AppCompatActivity {
 
     //Function that does the password changes
     public void changePassword (String changeDec, String changeNam, String changePass, String fileName) {
-        String oldNam = "";
-        String oldPass = "";
         String data = readFromFile(fileName);
         //Log.d("TAG", data); //Delete for string testing
 
         //Split data into words to find what to change
-        String[] words = data.split(" ");
-        Log.d("TAG", "Going into for loop"); //Delete for string testing
-        Log.d("TAG", changeDec); //Delete for string testing
+        String regex = "[:,\n]";
+        String[] words = data.split(regex);
+
+        Log.d("TAG", Arrays.toString(words)); //Delete for string testing
+        Log.d("TAG", words[40]); //Delete for string testing
+        //Log.d("TAG", "Going into for loop"); //Delete for string testing
+        //Log.d("TAG", changeDec); //Delete for string testing
+
+        for (String word : words) {
+            if (word.equals(changeDec)) {
+                Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
+            }
+        }
+        Log.d("TAG", "Never Found"); //Delete for string testing
+
         //Using description to find the username and password to change
-        for (int i = 0; i < words.length; i++) {
+        /*for (int i = 0; i < words.length; i++) {
             Log.d("TAG", words[i]); //Delete for string testing
             if (Objects.equals(words[i], changeDec)) { //This if statement is not working for the string compare START WORK HERE
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-                oldNam = words[i + 3];
-                oldPass = words[i + 5];
+                String oldNam = words[i + 3];
+                String oldPass = words[i + 5];
                 Log.d("TAG", oldNam); //Delete for string testing
                 Log.d("TAG", oldPass); //Delete for string testing
 
@@ -95,13 +106,13 @@ public class pswdEdit extends AppCompatActivity {
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);
-                }*/
+                }
             }
         }
 
         //Go back to the choice screen after edit password
         Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
-        startActivity(choiceScreen);
+        startActivity(choiceScreen);*/
     }
 
     public String readFromFile(String fileName) {
@@ -139,7 +150,7 @@ public class pswdEdit extends AppCompatActivity {
     }
 
     public void editPSWD(View view) {
-        Log.d("TAG", "Edit password called");
+        //Log.d("TAG", "Edit password called");
         String fileName = "Password List.txt";
 
         EditText desText = findViewById(R.id.editDescription);
