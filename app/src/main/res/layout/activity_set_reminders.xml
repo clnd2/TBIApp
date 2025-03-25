@@ -77,44 +77,44 @@
       app:layout_constraintTop_toBottomOf="@+id/uiSelectDate" />
 
   <TextView
-      android:id="@+id/textTimeSelected"
-      android:layout_width="218dp"
+      android:id="@+id/textTimeStartSelected"
+      android:layout_width="160dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="9dp"
       android:text="Time Selected"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiSelectTime" />
+      app:layout_constraintTop_toBottomOf="@+id/uiSelectStartTime" />
 
   <TextView
       android:id="@+id/textLocation"
       android:layout_width="218dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="7dp"
+      android:layout_marginTop="19dp"
       android:text="Location"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textTimeSelected" />
+      app:layout_constraintTop_toBottomOf="@+id/dropdownDuration" />
 
   <TextView
-      android:id="@+id/textRepeat"
+      android:id="@+id/textDuration"
       android:layout_width="106dp"
       android:layout_height="29dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="18dp"
-      android:text="Repeat?"
+      android:layout_marginTop="19dp"
+      android:text="Duration"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiLocation" />
+      app:layout_constraintTop_toBottomOf="@+id/textTimeStartSelected" />
 
   <Spinner
-      android:id="@+id/dropdownRepeat"
+      android:id="@+id/dropdownDuration"
       android:layout_width="333dp"
       android:layout_height="26dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="13dp"
+      android:layout_marginTop="9dp"
       android:spinnerMode="dropdown"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textRepeat" />
+      app:layout_constraintTop_toBottomOf="@+id/textDuration" />
 
   <Button
       android:id="@+id/btnCancel"
@@ -139,13 +139,13 @@
       app:layout_constraintTop_toBottomOf="@+id/uiDescription" />
 
   <Button
-      android:id="@+id/uiSelectTime"
+      android:id="@+id/uiSelectStartTime"
       android:layout_width="129dp"
       android:layout_height="57dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="8dp"
-      android:onClick="selectTime"
-      android:text="Select Time"
+      android:onClick="selectStartTime"
+      android:text="Select Start Time"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textDateSelected" />
 

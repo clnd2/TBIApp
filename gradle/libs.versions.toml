@@ -8,6 +8,7 @@ material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
 legacySupportV4 = "1.0.0"
+materialCalendarview = "1.4.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -18,6 +19,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+material-calendarview = { module = "com.prolificinteractive:material-calendarview", version.ref = "materialCalendarview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

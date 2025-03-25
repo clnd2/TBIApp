@@ -1,9 +1,7 @@
 package com.example.appinterface1;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -12,16 +10,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Button;
 import android.app.DatePickerDialog;
 
 //added
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.app.TimePickerDialog;
@@ -41,6 +40,9 @@ public class setReminders extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Spinner repeatSpinner = findViewById(R.id.dropdownDuration);
+        setupRepeatSpinner(repeatSpinner); // Call the separate function
     }
 
     public void done(View v) {
@@ -84,7 +86,80 @@ public class setReminders extends AppCompatActivity {
         String dat = getSavedDate();
 
         //get the text of the time
-        String tim = getSavedTime();
+        String timStart = getStartTime();
+
+        //get duration
+        Spinner spinner = findViewById(R.id.dropdownDuration);
+        String duration = spinner.getSelectedItem().toString();
+
+        int startingTime = Integer.parseInt(timStart);
+
+        int duration2 = 0;
+
+        switch (duration) {
+            case "15 Minutes":
+                duration2 = startingTime + 15;
+                break;
+            case "30 Minutes":
+                duration2 = startingTime + 30;
+                break;
+            case "1 Hour":
+                duration2 = startingTime + 100;
+                break;
+            case "2 Hours":
+                duration2 = startingTime + 200;
+                break;
+            case "3 Hours":
+                duration2 = startingTime + 300;
+                break;
+            case "4 Hours":
+                duration2 = startingTime + 400;
+                break;
+        }
+
+        int secondLastDigit = (duration2 / 10) % 10;
+
+        if(secondLastDigit >= 6)
+        {
+            duration2 = duration2 - 60;
+            duration2 = duration2 + 100;
+        }
+
+        String endTime = "";
+
+        if(duration2 >= 2400) {
+            duration2 = duration2 - 2400;
+            if (duration2 < 100) {
+                endTime = String.valueOf(duration2);
+                endTime = "00" + endTime;
+            } else if (duration2 < 1000) {
+                endTime = String.valueOf(duration2);
+                endTime = "0" + endTime;
+            }
+        }
+        else {
+            if(duration2 < 100)
+            {
+                endTime = String.valueOf(duration2);
+                endTime = "00" + endTime;
+            }
+            else if (duration2 < 1000)
+            {
+                endTime = String.valueOf(duration2);
+                endTime = "0" + endTime;
+            }
+            else
+            {
+                endTime = String.valueOf(duration2);
+            }
+        }
+
+
+
+        //Log.d("endTime", endTime);
+
+
+
 
         //create an ICAL file
         StringBuilder icsContent = new StringBuilder();
@@ -92,8 +167,8 @@ public class setReminders extends AppCompatActivity {
         icsContent.append("Version:2.0\n");
         icsContent.append("BEGIN:VEVENT\n");
         icsContent.append("SUMMARY:" + tit + "\n");
-        icsContent.append("DTSTART;TZID=America/Denver:" + dat + "T" + tim + "00" + "\n");
-        icsContent.append("DTEND;TZID=America/Denver:\n");
+        icsContent.append("DTSTART;TZID=America/Denver:" + dat + "T" + timStart + "00" + "\n");
+        icsContent.append("DTEND;TZID=America/Denver:" + dat + "T" + endTime + "00" + "\n");
         icsContent.append("LOCATION:" + loc + "\n");
         icsContent.append("DESCRIPTION:" + desc + "\n");
         icsContent.append("STATUS:CONFIRMED\n");
@@ -141,13 +216,33 @@ public class setReminders extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
-                    String selectedDate = selectedYear + "" + (selectedMonth + 1) + "" + selectedDay;
+
+
+                    if(selectedMonth < 10 && selectedDay < 10) {
+                        String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "0" + selectedDay;
+                        saveDate(selectedDate);
+
+                    }
+                    else if (selectedMonth < 10 && selectedDay >= 10)
+                    {
+                        String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "" + selectedDay;
+                        saveDate(selectedDate);
+                    }
+                    else if (selectedMonth >= 10 && selectedDay < 10)
+                    {
+                        String selectedDate = selectedYear + "" + (selectedMonth + 1) + "0" + selectedDay;
+                        saveDate(selectedDate);
+                    }
+                    else
+                    {
+                        String selectedDate = selectedYear + "" + (selectedMonth + 1) + "" + selectedDay;
+                        saveDate(selectedDate);
+                    }
 
                     TextView textDateSelected = findViewById(R.id.textDateSelected);
-                    textDateSelected.setText("Selected Date: " + (selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);;
+                    textDateSelected.setText("Selected Date: " + (selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear);
 
                     // Save the selected date
-                    saveDate(selectedDate);
                 },
                 year, month, day
         );
@@ -167,7 +262,7 @@ public class setReminders extends AppCompatActivity {
         return sharedPreferences.getString("selected_date", "");
     }
 
-    public void selectTime(View v)
+    public void selectStartTime(View v)
     {
         showTimePicker();
     }
@@ -197,31 +292,42 @@ public class setReminders extends AppCompatActivity {
                             hour24 = selectedHour;
                         }
 
+                            String selectedTime = String.format("%02d%02d", hour24, selectedMinute);
 
-                        String selectedTime = String.format("%02d%02d", hour24, selectedMinute);
 
+                            TextView textTimeSelected = findViewById(R.id.textTimeStartSelected);
+                            if(selectedMinute < 10) {
+                                textTimeSelected.setText("Selected Time: " + hour12 + ":" + "0" + selectedMinute + " " + amPm);
+                            }
+                            else{
+                                textTimeSelected.setText("Selected Time: " + hour12 + ":" + selectedMinute + " " + amPm);
+                            }
+                            saveStartTime(selectedTime);
 
-                        TextView textTimeSelected = findViewById(R.id.textTimeSelected);
-                        textTimeSelected.setText("Selected Time: " + hour12 + ":" + selectedMinute + " " + amPm);
-
-                        // Save the selected time
-                        saveTime(selectedTime);
                     }
                 }, hour, minute, false); // false for 24-hour format
+
+        timePickerDialog.setTitle("Start Time");
 
         timePickerDialog.show();
     }
 
-    private void saveTime(String time) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    private void saveStartTime(String time) {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences1.edit();
         editor.putString("selected_time", time);
         editor.apply();
     }
 
-    private String getSavedTime() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("selected_time", "");
+    private String getStartTime() {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences1.getString("selected_time", "");
+    }
+
+    private void setupRepeatSpinner(Spinner spinner) {
+        String[] durations = {"15 Minutes", "30 Minutes", "1 Hour", "2 Hours", "3 Hours", "4 Hours"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, durations);
+        spinner.setAdapter(adapter);
     }
 
 
