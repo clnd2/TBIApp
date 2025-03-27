@@ -1,7 +1,15 @@
 package com.example.appinterface1;
 
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -9,6 +17,8 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,6 +26,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.net.URL;
 import android.os.Handler;
 import android.os.Looper;
+
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,9 +39,7 @@ import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.property.Summary;
-import net.fortuna.ical4j.util.CompatibilityHints;
 import java.io.StringReader;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -120,37 +130,124 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void handleiCal(String iCalString) {
         System.out.println(iCalString);
-        System.out.println("testing parseIcal");
-        parseICal(iCalString);
+        System.out.println("running handleiCal");
+
+        // if we don't have read calendar permission, ask for it
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR},100);
+        }
+
+        Calendar iCalCal = parseICal(iCalString);
+        // getCalID();
+        // get events out of calendar
+        List<VEvent> events = iCalCal.getComponents(VEvent.VEVENT);
+        // now create events in Native Calendar
+        int i = 0;
+        for (VEvent event : events) {
+            i++;
+            System.out.println(i);
+            Summary summary = event.getSummary();
+            String title = summary!= null ? summary.getValue() : "No Title";
+            //String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(event.getStartDate().getDate());
+            Date start = event.getStartDate().getDate();
+            Date end = event.getEndDate().getDate();
+            addEvent(title, start, end);
+
+        }
+    }
+
+    public void getCalID(){
+
+        Uri uri = CalendarContract.Calendars.CONTENT_URI;
+        String[] projection = new String[]{
+                CalendarContract.Calendars._ID,
+                CalendarContract.Calendars.CALENDAR_DISPLAY_NAME
+        };
+        try {
+            Cursor cursor = getContentResolver().query(uri, projection, null, null);
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    long calendarId = cursor.getLong(0);
+                    String calName = cursor.getString(1);
+                    System.out.println("Calendar ID and name: ");
+                    System.out.println(calendarId);
+                    System.out.println(calName);
+                }
+                cursor.close();
+            }
+
+
+        } catch (Exception e) {
+            Log.d("System.out","getCalID error " + e);
+        }
+
     }
 
     // get iCal events into Calendar Events
-    public void parseICal(String icalString) {
+    public Calendar parseICal(String icalString) {
+        System.out.println("parsing iCal");
         System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
+        Calendar icalendar = null;
         try{
             //CompatibilityHints.setHintEnabled(CompatibilityHints.KEY_RELAXED_PARSING,true);
             StringReader sin = new StringReader(icalString); // read iCal string into sin
-            System.out.println("string reader");
-            System.out.println(sin);
             CalendarBuilder builder = new CalendarBuilder();
-            Calendar calendar = builder.build(sin); // build calendar with iCal string
+            icalendar = builder.build(sin); // build calendar with iCal string
 
-            List<VEvent> events = calendar.getComponents(VEvent.VEVENT);
-            // test function by printing events
-            for (VEvent event : events) {
-                Summary summary = event.getSummary();
-                String title = summary!= null ? summary.getValue() : "No Title";
-                String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                        .format(event.getStartDate().getDate());
-                System.out.println((summary));
-                System.out.println(title);
-                System.out.println(startDate);
-            }
+//            List<VEvent> events = icalendar.getComponents(VEvent.VEVENT);
+//            // test function by printing events
+//            System.out.println("printing events");
+//            int i = 0;
+//            for (VEvent event : events) {
+//                i++;
+//                System.out.println(i);
+//                Summary summary = event.getSummary();
+//                String title = summary!= null ? summary.getValue() : "No Title";
+//                //String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(event.getStartDate().getDate());
+//                Date start = event.getStartDate().getDate();
+//                System.out.println(start.getTime());
+//
+//            }
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("parseICal Error:");
-            System.out.println(e);
+            Log.d("System.out","parseICal Error :" + e);
         }
+        return icalendar;
+    }
+
+    public void addEvent(String title, Date startDate, Date endDate) {
+        // input: title, start, end
+        // adds event to native calendar with ID=1
+        System.out.println("Adding Event");
+        Log.d("System.out", "Title: " + title);
+        Log.d("System.out", "start date: " + startDate);
+        Log.d("System.out", "end date: " + endDate);
+
+        // context for contentResolver later
+        Context context = getApplicationContext();
+        // if we don't have read calendar permission, ask for it
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR},100);
+        }
+
+        long calID = 1;
+        long startMillis = startDate.getTime();
+        long endMillis = endDate.getTime();
+
+        ContentValues values = new ContentValues();
+        values.put(CalendarContract.Events.CALENDAR_ID, calID);
+        values.put(CalendarContract.Events.TITLE, title);
+        values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
+        values.put(CalendarContract.Events.DTSTART, startMillis);
+        values.put(CalendarContract.Events.DTEND, endMillis);
+
+        Uri uri = context.getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
+
+        if (uri != null) {
+            long eventID = Long.parseLong(uri.getLastPathSegment());
+            Log.d("System.out", "event ID: " + eventID);
+        }
+
     }
 }
 
