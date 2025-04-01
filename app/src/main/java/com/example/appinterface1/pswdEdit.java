@@ -38,14 +38,15 @@ public class pswdEdit extends AppCompatActivity {
     //Function that does the password changes
     public void changePassword (String changeDec, String changeNam, String changePass, String fileName) {
         String data = readFromFile(fileName);
-        //Log.d("TAG", data); //Delete for string testing
+        Log.d("TAG", data); //Delete for string testing
 
         //Split data into words to find what to change
-        String regex = "[:,\n]";
+        String regex = ":\\s+|\\n+";
         String[] words = data.split(regex);
 
+
         Log.d("TAG", Arrays.toString(words)); //Delete for string testing
-        Log.d("TAG", words[40]); //Delete for string testing
+        Log.d("TAG", words[6]); //Delete for string testing
         //Log.d("TAG", "Going into for loop"); //Delete for string testing
         //Log.d("TAG", changeDec); //Delete for string testing
 
@@ -54,7 +55,6 @@ public class pswdEdit extends AppCompatActivity {
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
             }
         }
-        Log.d("TAG", "Never Found"); //Delete for string testing
 
         //Using description to find the username and password to change
         /*for (int i = 0; i < words.length; i++) {
