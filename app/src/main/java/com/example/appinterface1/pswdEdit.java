@@ -50,23 +50,18 @@ public class pswdEdit extends AppCompatActivity {
         //Log.d("TAG", "Going into for loop"); //Delete for string testing
         //Log.d("TAG", changeDec); //Delete for string testing
 
+        //Using description to find the username and password to change
+        int i = 0;
+        int checkVal = 0;
         for (String word : words) {
             if (word.equals(changeDec)) {
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-            }
-        }
-
-        //Using description to find the username and password to change
-        /*for (int i = 0; i < words.length; i++) {
-            Log.d("TAG", words[i]); //Delete for string testing
-            if (Objects.equals(words[i], changeDec)) { //This if statement is not working for the string compare START WORK HERE
-                Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-                String oldNam = words[i + 3];
-                String oldPass = words[i + 5];
+                String oldNam = words[i + 2];
+                String oldPass = words[i + 4];
                 Log.d("TAG", oldNam); //Delete for string testing
                 Log.d("TAG", oldPass); //Delete for string testing
 
-                //Changing the data in the file
+                //Changing the data in the file //Issue Here with changing file cannot do .replace at it changes whenever that word is seen
                 String namChange = data.replace(oldNam, changeNam);
                 String editContent = namChange.replace(oldPass, changePass);
                 Log.d("TAG", editContent); //Delete for string testing
@@ -77,42 +72,49 @@ public class pswdEdit extends AppCompatActivity {
 
                 //Create a new file that has the new information
                 //CreateAndWriteFile(fileName, editContent);
+
+
+                //Check Val to know that the password was found and edited so does not need to be added
+                checkVal = 1;
                 break;
             }
-            else{
-                Log.d("TAG", "Password not found"); //Delete for string testing
-                //That password does not exist so adding to the password file
-                /*Log.d("TAG", "Password not there creating now."); //Delete for string testing
-                //Create the data string
-                String first = ("Detail: " + changeDec);
-                String second = ("\nUsername: " + changeNam);
-                String third = ("\nPassword: " + changePass + "\n\n");
-                String content = (first + second + third);
+            i++;
+        }
 
-                //Add to the file
-                try {
-                    //Getting the file path
-                    File path = getFilesDir();
+        //That password does not exist so adding to the password file
+        if (checkVal == 0){
+            //Do the addition of the password here
+            Log.d("TAG", "Password not there creating now."); //Delete for string testing
 
-                    //Create the file
-                    File fileP = new File(path, fileName);
-                    FileOutputStream fos = new FileOutputStream(fileP, true);
+            //Create the data string
+            String first = ("Detail: " + changeDec);
+            String second = ("\nUsername: " + changeNam);
+            String third = ("\nPassword: " + changePass + "\n\n");
+            String content = (first + second + third);
 
-                    //Write to the file
-                    fos.write(content.getBytes());
-                    fos.close();
-                    Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
-                    Log.d("TAG", "The file was written to.");
+            //Add to the file
+            try {
+                //Getting the file path
+                File path = getFilesDir();
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                //Create the file
+                File fileP = new File(path, fileName);
+                FileOutputStream fos = new FileOutputStream(fileP, true);
+
+                //Write to the file
+                fos.write(content.getBytes());
+                fos.close();
+                Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "The file was written to.");
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 
         //Go back to the choice screen after edit password
         Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
-        startActivity(choiceScreen);*/
+        startActivity(choiceScreen);
     }
 
     public String readFromFile(String fileName) {
