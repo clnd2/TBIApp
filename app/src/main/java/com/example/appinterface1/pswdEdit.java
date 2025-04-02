@@ -46,9 +46,6 @@ public class pswdEdit extends AppCompatActivity {
 
 
         Log.d("TAG", Arrays.toString(words)); //Delete for string testing
-        Log.d("TAG", words[6]); //Delete for string testing
-        //Log.d("TAG", "Going into for loop"); //Delete for string testing
-        //Log.d("TAG", changeDec); //Delete for string testing
 
         //Using description to find the username and password to change
         int i = 0;
@@ -62,17 +59,29 @@ public class pswdEdit extends AppCompatActivity {
                 Log.d("TAG", oldPass); //Delete for string testing
 
                 //Changing the data in the file //Issue Here with changing file cannot do .replace at it changes whenever that word is seen
-                String namChange = data.replace(oldNam, changeNam);
-                String editContent = namChange.replace(oldPass, changePass);
-                Log.d("TAG", editContent); //Delete for string testing
+                //String namChange = data.replace(oldNam, changeNam);
+                //String editContent = namChange.replace(oldPass, changePass);
+                words[i + 2] = changeNam;
+                words[i + 4] = changePass;
+                //Log.d("TAG", editContent); //Delete for string testing
+                Log.d("TAG", Arrays.toString(words)); //Delete for string testing
+                String updatedPass = String.join(regex, words);
 
                 //Delete the file that had the old data, Does not work
-                //File oldData
-                //fileName.split();
+                //Getting the file path
+                File path = getFilesDir();
 
-                //Create a new file that has the new information
-                //CreateAndWriteFile(fileName, editContent);
+                //Create the file
+                File fileP = new File(path, fileName);
+                if (fileP.delete()) {
+                    Log.d("TAG", "File deleted now doing now making new one."); //Delete for string testing
 
+                    //Create a new file that has the new information
+                    CreateAndWriteFile(fileName, updatedPass);
+                }
+                else {
+                    Log.d("TAG", "Error deleting the file."); //Delete for string testing
+                }
 
                 //Check Val to know that the password was found and edited so does not need to be added
                 checkVal = 1;
@@ -113,6 +122,7 @@ public class pswdEdit extends AppCompatActivity {
         }
 
         //Go back to the choice screen after edit password
+        Toast.makeText(getApplicationContext(), changeDec + " password edited.", Toast.LENGTH_SHORT).show();
         Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
         startActivity(choiceScreen);
     }
