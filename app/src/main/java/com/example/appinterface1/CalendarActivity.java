@@ -126,8 +126,6 @@ public class CalendarActivity extends AppCompatActivity {
         void onResult(String result);
     }
 
-
-
     private void handleiCal(String iCalString) {
         System.out.println(iCalString);
         System.out.println("running handleiCal");
@@ -137,15 +135,20 @@ public class CalendarActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR},100);
         }
 
+        // store ical events in a net.fortuna calendar
         Calendar iCalCal = parseICal(iCalString);
+
         // getCalID();
-        // get events out of calendar
+
+        // get events out of net.fortuna calendar
         List<VEvent> events = iCalCal.getComponents(VEvent.VEVENT);
+
         Context context = getApplicationContext();
         // if we don't have read calendar permission, ask for it
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR},100);
         }
+
         // now create events in Native Calendar
         int i = 0;
         for (VEvent event : events) {
@@ -160,6 +163,23 @@ public class CalendarActivity extends AppCompatActivity {
             EventHandling.addEvent(context, title, start, end);
 
         }
+    }
+
+    // get iCal events into Calendar Events
+    public Calendar parseICal(String icalString) {
+        System.out.println("parsing iCal");
+        System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
+        Calendar icalendar = null;
+        try{
+            StringReader sin = new StringReader(icalString); // read iCal string into sin
+            CalendarBuilder builder = new CalendarBuilder();
+            icalendar = builder.build(sin); // build calendar with iCal string
+
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.d("System.out","parseICal Error :" + e);
+        }
+        return icalendar;
     }
 
     public void getCalID(){
@@ -187,23 +207,6 @@ public class CalendarActivity extends AppCompatActivity {
             Log.d("System.out","getCalID error " + e);
         }
 
-    }
-
-    // get iCal events into Calendar Events
-    public Calendar parseICal(String icalString) {
-        System.out.println("parsing iCal");
-        System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
-        Calendar icalendar = null;
-        try{
-            StringReader sin = new StringReader(icalString); // read iCal string into sin
-            CalendarBuilder builder = new CalendarBuilder();
-            icalendar = builder.build(sin); // build calendar with iCal string
-
-        } catch (Exception e) {
-            //e.printStackTrace();
-            Log.d("System.out","parseICal Error :" + e);
-        }
-        return icalendar;
     }
 
 }

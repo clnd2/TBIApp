@@ -14,7 +14,7 @@
       android:layout_marginStart="16dp"
       android:layout_marginEnd="60dp"
       android:layout_marginBottom="47dp"
-      android:onClick="done"
+      android:onClick="doneButton"
       android:text="Done"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/btnCancel"
@@ -122,7 +122,7 @@
       android:layout_height="77dp"
       android:layout_marginEnd="51dp"
       android:layout_marginBottom="47dp"
-      android:onClick="cancel"
+      android:onClick="cancelButton"
       android:text="Cancel"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent" />
@@ -133,7 +133,7 @@
       android:layout_height="57dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="12dp"
-      android:onClick="selectDate"
+      android:onClick="selectDateButton"
       android:text="Select Date"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/uiDescription" />
