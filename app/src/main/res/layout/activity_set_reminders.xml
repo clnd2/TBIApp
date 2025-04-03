@@ -21,104 +21,100 @@
       app:layout_constraintStart_toStartOf="parent" />
 
   <EditText
-      android:id="@+id/uiDate"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="172dp"
-      android:ems="10"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <EditText
       android:id="@+id/uiDescription"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="12dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textDescription" />
 
   <EditText
-      android:id="@+id/uiTime"
+      android:id="@+id/uiTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="292dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
   <EditText
       android:id="@+id/uiLocation"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="424dp"
       android:ems="10"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
   <TextView
       android:id="@+id/textDescription"
       android:layout_width="218dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
+      android:layout_marginTop="15dp"
       android:text="Description"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/uiTitle" />
+
+  <TextView
+      android:id="@+id/textTitle"
+      android:layout_width="218dp"
+      android:layout_height="36dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="Title of event"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-      android:id="@+id/textDate"
+      android:id="@+id/textDateSelected"
       android:layout_width="218dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="18dp"
-      android:text="Date"
+      android:text="Date Selecetd"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiDescription" />
+      app:layout_constraintTop_toBottomOf="@+id/uiSelectDate" />
 
   <TextView
-      android:id="@+id/textTime"
-      android:layout_width="218dp"
+      android:id="@+id/textTimeStartSelected"
+      android:layout_width="160dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="20dp"
-      android:text="Time"
+      android:layout_marginTop="9dp"
+      android:text="Time Selected"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiDate" />
+      app:layout_constraintTop_toBottomOf="@+id/uiSelectStartTime" />
 
   <TextView
       android:id="@+id/textLocation"
       android:layout_width="218dp"
       android:layout_height="36dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="26dp"
+      android:layout_marginTop="19dp"
       android:text="Location"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiTime" />
+      app:layout_constraintTop_toBottomOf="@+id/dropdownDuration" />
 
   <TextView
-      android:id="@+id/textRepeat"
+      android:id="@+id/textDuration"
       android:layout_width="106dp"
       android:layout_height="29dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="18dp"
-      android:text="Repeat?"
+      android:layout_marginTop="19dp"
+      android:text="Duration"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/uiLocation" />
+      app:layout_constraintTop_toBottomOf="@+id/textTimeStartSelected" />
 
   <Spinner
-      android:id="@+id/dropdownRepeat"
+      android:id="@+id/dropdownDuration"
       android:layout_width="333dp"
       android:layout_height="26dp"
-      android:layout_marginStart="15dp"
-      android:layout_marginTop="28dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="9dp"
       android:spinnerMode="dropdown"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textRepeat" />
+      app:layout_constraintTop_toBottomOf="@+id/textDuration" />
 
   <Button
       android:id="@+id/btnCancel"
@@ -130,5 +126,27 @@
       android:text="Cancel"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent" />
+
+  <Button
+      android:id="@+id/uiSelectDate"
+      android:layout_width="129dp"
+      android:layout_height="57dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="12dp"
+      android:onClick="selectDate"
+      android:text="Select Date"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/uiDescription" />
+
+  <Button
+      android:id="@+id/uiSelectStartTime"
+      android:layout_width="129dp"
+      android:layout_height="57dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:onClick="selectStartTime"
+      android:text="Select Start Time"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textDateSelected" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
