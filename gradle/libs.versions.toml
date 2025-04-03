@@ -1,5 +1,9 @@
 [versions]
 agp = "8.7.3"
+cacheApi = "1.1.1"
+ehcache = "3.10.0"
+ical4j = "3.0.26"
+ical4jVersion = "3.0.7"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -10,6 +14,9 @@ constraintlayout = "2.2.0"
 legacySupportV4 = "1.0.0"
 
 [libraries]
+cache-api = { module = "javax.cache:cache-api", version.ref = "cacheApi" }
+ehcache = { module = "org.ehcache:ehcache", version.ref = "ehcache" }
+ical4j = { module = "net.fortuna.ical4j:ical4j", version.ref = "ical4j" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -18,6 +25,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+mnode-ical4j = { module = "org.mnode.ical4j:ical4j", version.ref = "ical4jVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
