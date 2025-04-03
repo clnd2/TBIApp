@@ -18,8 +18,6 @@ import java.io.FileOutputStream; //Added Import
 import java.io.FileInputStream; //Added Import
 import java.io.IOException; //Added Import
 import java.util.Arrays;
-import java.util.Objects; //Added Import
-import android.util.Log; //Added Import
 
 public class pswdEdit extends AppCompatActivity {
 
@@ -46,23 +44,15 @@ public class pswdEdit extends AppCompatActivity {
 
         Log.d("TAG", Arrays.toString(words)); //Delete for string testing
 
-        //Using description to find the username and password to change
+        //Using description to find the username and password to change and changing in string
         int i = 0;
         int checkVal = 0;
         for (String word : words) {
             if (word.equals(changeDec)) {
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-                //String oldNam = words[i + 2];
-                //String oldPass = words[i + 4];
-                //Log.d("TAG", oldNam); //Delete for string testing
-                //Log.d("TAG", oldPass); //Delete for string testing
 
-                //Changing the data in the file //Issue Here with changing file cannot do .replace at it changes whenever that word is seen
-                //String namChange = data.replace(oldNam, changeNam);
-                //String editContent = namChange.replace(oldPass, changePass);
                 words[i + 2] = changeNam;
                 words[i + 4] = changePass;
-                //Log.d("TAG", editContent); //Delete for string testing
 
                 //Check Val to know that the password was found and edited so does not need to be added
                 checkVal = 1;
@@ -71,52 +61,45 @@ public class pswdEdit extends AppCompatActivity {
             i++;
         }
 
-        //Getting the file path
         File path = getFilesDir();
-
-        //Delete the old file, does not work yet
         File fileP = new File(path, fileName);
-        if (fileP.delete()) {
-            Log.d("TAG", "File deleted now doing now making new one."); //Delete for string testing
+        if (checkVal == 1) {
+            //Delete the old file, does not work yet
+            if (fileP.delete()) {
+                Log.d("TAG", "File deleted now doing now making new one."); //Delete for string testing
 
-            int j = 0;
-            for (String ignored : words) {
-                //Create the data string
-                String first = ("Detail: " + words[j + 1]);
-                String second = ("\nUsername: " + words[j + 3]);
-                String third = ("\nPassword: " + words[j + 5] + "\n\n");
-                String content = (first + second + third);
-                Log.d("TAG", content); //Delete for string testing
+                int j = 0;
+                for (String ignored : words) {
+                    //Create the data string
+                    String first = ("Detail: " + words[j + 1]);
+                    String second = ("\nUsername: " + words[j + 3]);
+                    String third = ("\nPassword: " + words[j + 5] + "\n\n");
+                    String content = (first + second + third);
+                    Log.d("TAG", content); //Delete for string testing
 
-                //Add to the file
-                try {
-                    //Create the file
-                    FileOutputStream fos = new FileOutputStream(fileP, true);
+                    //Add to the file
+                    try {
+                        //Create the file
+                        FileOutputStream fos = new FileOutputStream(fileP, true);
 
-                    //Write to the file
-                    fos.write(content.getBytes());
-                    fos.close();
+                        //Write to the file
+                        fos.write(content.getBytes());
+                        fos.close();
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    j = j + 6;
                 }
-                j = j + 6;
+                //To show the edit is complete
+                Toast.makeText(getApplicationContext(), changeDec + " password edited.", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("TAG", "Error deleting the file."); //Delete for string testing
             }
         }
-        else {
-            Log.d("TAG", "Error deleting the file."); //Delete for string testing
-        }
-
-        //updatedPS = words;
-        Log.d("TAG", Arrays.toString(words)); //Delete for string testing
-
-
-        //To show the edit is complete
-        Toast.makeText(getApplicationContext(), changeDec + " password edited.", Toast.LENGTH_SHORT).show();
 
         //That password does not exist so adding to the password file
-        if (checkVal == 0){
-            //Do the addition of the password here
+        else {
             Log.d("TAG", "Password not there creating now."); //Delete for string testing
 
             //Create the data string
