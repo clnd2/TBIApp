@@ -141,6 +141,11 @@ public class CalendarActivity extends AppCompatActivity {
         // getCalID();
         // get events out of calendar
         List<VEvent> events = iCalCal.getComponents(VEvent.VEVENT);
+        Context context = getApplicationContext();
+        // if we don't have read calendar permission, ask for it
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR},100);
+        }
         // now create events in Native Calendar
         int i = 0;
         for (VEvent event : events) {
@@ -151,7 +156,8 @@ public class CalendarActivity extends AppCompatActivity {
             //String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(event.getStartDate().getDate());
             Date start = event.getStartDate().getDate();
             Date end = event.getEndDate().getDate();
-            addEvent(title, start, end);
+
+            EventHandling.addEvent(context, title, start, end);
 
         }
     }
@@ -215,71 +221,5 @@ public class CalendarActivity extends AppCompatActivity {
         return icalendar;
     }
 
-    public void addEvent(String title, Date startDate, Date endDate) {
-        // input: title, start, end
-        // adds event to native calendar with ID=1
-
-        // context for contentResolver later
-        Context context = getApplicationContext();
-        // if we don't have read calendar permission, ask for it
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR},100);
-        }
-
-        long calID = 1;
-        long startMillis = startDate.getTime();
-        long endMillis = endDate.getTime();
-
-        // check for duplicates
-        if (EventAlreadyExists(context, title, startMillis, endMillis)) {
-            System.out.println("event already exists");
-            return;
-        }
-
-        System.out.println("Adding Event");
-        Log.d("System.out", "Title: " + title);
-        Log.d("System.out", "start date: " + startDate);
-        Log.d("System.out", "end date: " + endDate);
-
-
-        ContentValues values = new ContentValues();
-        values.put(CalendarContract.Events.CALENDAR_ID, calID);
-        values.put(CalendarContract.Events.TITLE, title);
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
-        values.put(CalendarContract.Events.DTSTART, startMillis);
-        values.put(CalendarContract.Events.DTEND, endMillis);
-
-        Uri uri = context.getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
-
-        if (uri != null) {
-            long eventID = Long.parseLong(uri.getLastPathSegment());
-            Log.d("System.out", "event ID: " + eventID);
-        }
-    }
-
-    public boolean EventAlreadyExists(Context context, String title, long startMillis, long endMillis) {
-        Uri uri = CalendarContract.Events.CONTENT_URI;
-        long calID = 1;
-        boolean eventExists = false;
-
-        String[] projection = new String[]{CalendarContract.Events._ID};
-        String selection = CalendarContract.Events.CALENDAR_ID + " = ? AND " +
-                CalendarContract.Events.TITLE + " = ? AND " +
-                CalendarContract.Events.DTSTART + " = ? AND " +
-                CalendarContract.Events.DTEND + " = ?";
-        String[] selectionArgs = new String[] {
-                String.valueOf(calID),
-                title,
-                String.valueOf(startMillis),
-                String.valueOf(endMillis)
-        };
-
-        Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
-        if (cursor != null) {
-            eventExists = (cursor.getCount() > 0);
-            cursor.close();
-        }
-        return eventExists;
-    }
 }
 
