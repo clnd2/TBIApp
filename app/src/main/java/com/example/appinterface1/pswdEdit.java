@@ -44,7 +44,6 @@ public class pswdEdit extends AppCompatActivity {
         String regex = ":\\s+|\\n+";
         String[] words = data.split(regex);
 
-
         Log.d("TAG", Arrays.toString(words)); //Delete for string testing
 
         //Using description to find the username and password to change
@@ -53,10 +52,10 @@ public class pswdEdit extends AppCompatActivity {
         for (String word : words) {
             if (word.equals(changeDec)) {
                 Log.d("TAG", "Correct Description was found to replace"); //Delete for string testing
-                String oldNam = words[i + 2];
-                String oldPass = words[i + 4];
-                Log.d("TAG", oldNam); //Delete for string testing
-                Log.d("TAG", oldPass); //Delete for string testing
+                //String oldNam = words[i + 2];
+                //String oldPass = words[i + 4];
+                //Log.d("TAG", oldNam); //Delete for string testing
+                //Log.d("TAG", oldPass); //Delete for string testing
 
                 //Changing the data in the file //Issue Here with changing file cannot do .replace at it changes whenever that word is seen
                 //String namChange = data.replace(oldNam, changeNam);
@@ -64,24 +63,6 @@ public class pswdEdit extends AppCompatActivity {
                 words[i + 2] = changeNam;
                 words[i + 4] = changePass;
                 //Log.d("TAG", editContent); //Delete for string testing
-                Log.d("TAG", Arrays.toString(words)); //Delete for string testing
-                String updatedPass = String.join(regex, words);
-
-                //Delete the file that had the old data, Does not work
-                //Getting the file path
-                File path = getFilesDir();
-
-                //Create the file
-                File fileP = new File(path, fileName);
-                if (fileP.delete()) {
-                    Log.d("TAG", "File deleted now doing now making new one."); //Delete for string testing
-
-                    //Create a new file that has the new information
-                    CreateAndWriteFile(fileName, updatedPass);
-                }
-                else {
-                    Log.d("TAG", "Error deleting the file."); //Delete for string testing
-                }
 
                 //Check Val to know that the password was found and edited so does not need to be added
                 checkVal = 1;
@@ -89,6 +70,49 @@ public class pswdEdit extends AppCompatActivity {
             }
             i++;
         }
+
+        //Getting the file path
+        File path = getFilesDir();
+
+        //Delete the old file, does not work yet
+        File fileP = new File(path, fileName);
+        if (fileP.delete()) {
+            Log.d("TAG", "File deleted now doing now making new one."); //Delete for string testing
+
+            int j = 0;
+            for (String ignored : words) {
+                //Create the data string
+                String first = ("Detail: " + words[j + 1]);
+                String second = ("\nUsername: " + words[j + 3]);
+                String third = ("\nPassword: " + words[j + 5] + "\n\n");
+                String content = (first + second + third);
+                Log.d("TAG", content); //Delete for string testing
+
+                //Add to the file
+                try {
+                    //Create the file
+                    FileOutputStream fos = new FileOutputStream(fileP, true);
+
+                    //Write to the file
+                    fos.write(content.getBytes());
+                    fos.close();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                j = j + 6;
+            }
+        }
+        else {
+            Log.d("TAG", "Error deleting the file."); //Delete for string testing
+        }
+
+        //updatedPS = words;
+        Log.d("TAG", Arrays.toString(words)); //Delete for string testing
+
+
+        //To show the edit is complete
+        Toast.makeText(getApplicationContext(), changeDec + " password edited.", Toast.LENGTH_SHORT).show();
 
         //That password does not exist so adding to the password file
         if (checkVal == 0){
@@ -103,11 +127,7 @@ public class pswdEdit extends AppCompatActivity {
 
             //Add to the file
             try {
-                //Getting the file path
-                File path = getFilesDir();
-
-                //Create the file
-                File fileP = new File(path, fileName);
+                //Access the file
                 FileOutputStream fos = new FileOutputStream(fileP, true);
 
                 //Write to the file
@@ -122,7 +142,6 @@ public class pswdEdit extends AppCompatActivity {
         }
 
         //Go back to the choice screen after edit password
-        Toast.makeText(getApplicationContext(), changeDec + " password edited.", Toast.LENGTH_SHORT).show();
         Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
         startActivity(choiceScreen);
     }
@@ -137,26 +156,6 @@ public class pswdEdit extends AppCompatActivity {
             return new String(content);
         } catch (Exception e) {
             Log.d("TAG", "There was an error reading file in the try block.");
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void CreateAndWriteFile(String fileName, String Content) {
-        try {
-            //Getting the file path
-            File path = getFilesDir();
-
-            //Create the file
-            File fileP = new File(path, fileName);
-            FileOutputStream fos = new FileOutputStream(fileP, true);
-
-            //Write to the file
-            fos.write(Content.getBytes());
-            fos.close();
-            Toast.makeText(getApplicationContext(), "Wrote to file: " + fileName, Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "The file was created and written to.");
-
-        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -177,18 +176,6 @@ public class pswdEdit extends AppCompatActivity {
         changePassword(changeDec, changeNam, changePass, fileName);
     }
 
-    //To delete file but may not need and will be deleted
-    /*public void deleteFile(String fileName){ Only for is the delete file function does not work
-        File path = getFilesDir();
-        File fileP = new File(path, fileName);
-        try{
-            if (Files.deleteIfExists(fileP.toPath())) {
-                System.out.println("File was deleted to create the new one.");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
     public void homeScreen(View H) {
         Intent homeScreen = new Intent(this, MainActivity.class);
         startActivity(homeScreen);
