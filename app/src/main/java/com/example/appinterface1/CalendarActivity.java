@@ -195,25 +195,10 @@ public class CalendarActivity extends AppCompatActivity {
         System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
         Calendar icalendar = null;
         try{
-            //CompatibilityHints.setHintEnabled(CompatibilityHints.KEY_RELAXED_PARSING,true);
             StringReader sin = new StringReader(icalString); // read iCal string into sin
             CalendarBuilder builder = new CalendarBuilder();
             icalendar = builder.build(sin); // build calendar with iCal string
 
-//            List<VEvent> events = icalendar.getComponents(VEvent.VEVENT);
-//            // test function by printing events
-//            System.out.println("printing events");
-//            int i = 0;
-//            for (VEvent event : events) {
-//                i++;
-//                System.out.println(i);
-//                Summary summary = event.getSummary();
-//                String title = summary!= null ? summary.getValue() : "No Title";
-//                //String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(event.getStartDate().getDate());
-//                Date start = event.getStartDate().getDate();
-//                System.out.println(start.getTime());
-//
-//            }
         } catch (Exception e) {
             //e.printStackTrace();
             Log.d("System.out","parseICal Error :" + e);

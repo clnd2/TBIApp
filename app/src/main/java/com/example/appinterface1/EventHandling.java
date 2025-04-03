@@ -21,8 +21,6 @@ public class EventHandling extends Activity {
         // input: title, start, end
         // adds event to native calendar with ID=1
 
-
-
         long calID = 1;
         long startMillis = startDate.getTime();
         long endMillis = endDate.getTime();
