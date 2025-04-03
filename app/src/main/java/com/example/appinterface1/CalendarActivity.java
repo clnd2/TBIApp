@@ -72,8 +72,6 @@ public class CalendarActivity extends AppCompatActivity {
                 }
         );
 
-        getiCal();
-
     }
 
     public void changeActivity(View v) {
@@ -90,6 +88,12 @@ public class CalendarActivity extends AppCompatActivity {
 
         }
         startActivity(i);
+    }
+
+    // run the thing
+    public void getiCal(View view) {
+        System.out.println("getiCal running");
+        fetchURLContent(iCalLink, this::handleiCal);
     }
 
     // get iCal link
@@ -122,11 +126,7 @@ public class CalendarActivity extends AppCompatActivity {
         void onResult(String result);
     }
 
-    // run the thing
-    public void getiCal() {
-        System.out.println("getiCal running");
-        fetchURLContent(iCalLink, this::handleiCal);
-    }
+
 
     private void handleiCal(String iCalString) {
         System.out.println(iCalString);
@@ -218,10 +218,6 @@ public class CalendarActivity extends AppCompatActivity {
     public void addEvent(String title, Date startDate, Date endDate) {
         // input: title, start, end
         // adds event to native calendar with ID=1
-        System.out.println("Adding Event");
-        Log.d("System.out", "Title: " + title);
-        Log.d("System.out", "start date: " + startDate);
-        Log.d("System.out", "end date: " + endDate);
 
         // context for contentResolver later
         Context context = getApplicationContext();
@@ -233,6 +229,18 @@ public class CalendarActivity extends AppCompatActivity {
         long calID = 1;
         long startMillis = startDate.getTime();
         long endMillis = endDate.getTime();
+
+        // check for duplicates
+        if (EventAlreadyExists(context, title, startMillis, endMillis)) {
+            System.out.println("event already exists");
+            return;
+        }
+
+        System.out.println("Adding Event");
+        Log.d("System.out", "Title: " + title);
+        Log.d("System.out", "start date: " + startDate);
+        Log.d("System.out", "end date: " + endDate);
+
 
         ContentValues values = new ContentValues();
         values.put(CalendarContract.Events.CALENDAR_ID, calID);
@@ -247,7 +255,31 @@ public class CalendarActivity extends AppCompatActivity {
             long eventID = Long.parseLong(uri.getLastPathSegment());
             Log.d("System.out", "event ID: " + eventID);
         }
+    }
 
+    public boolean EventAlreadyExists(Context context, String title, long startMillis, long endMillis) {
+        Uri uri = CalendarContract.Events.CONTENT_URI;
+        long calID = 1;
+        boolean eventExists = false;
+
+        String[] projection = new String[]{CalendarContract.Events._ID};
+        String selection = CalendarContract.Events.CALENDAR_ID + " = ? AND " +
+                CalendarContract.Events.TITLE + " = ? AND " +
+                CalendarContract.Events.DTSTART + " = ? AND " +
+                CalendarContract.Events.DTEND + " = ?";
+        String[] selectionArgs = new String[] {
+                String.valueOf(calID),
+                title,
+                String.valueOf(startMillis),
+                String.valueOf(endMillis)
+        };
+
+        Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+        if (cursor != null) {
+            eventExists = (cursor.getCount() > 0);
+            cursor.close();
+        }
+        return eventExists;
     }
 }
 
