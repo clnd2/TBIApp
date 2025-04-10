@@ -154,12 +154,7 @@ public class setReminders extends AppCompatActivity {
             }
         }
 
-
-
         //Log.d("endTime", endTime);
-
-
-
 
         //create an ICAL file
         StringBuilder icsContent = new StringBuilder();
@@ -181,18 +176,38 @@ public class setReminders extends AppCompatActivity {
     private void saveICSFile(String icsContent)
     {
         try {
+
+            File file = new File(getFilesDir(), "event.ics");
+
             // Get the path to the external storage directory
             File directory = getFilesDir();
 
-            // Create a file for the ICS content
-            File icsFile = new File(directory, "event.ics");
-            FileOutputStream fileOutputStream = new FileOutputStream(icsFile);
+            Log.e("INFO", "Display Directory:" + directory.getAbsolutePath());
 
-            // Write the ICS content to the file
-            fileOutputStream.write(icsContent.getBytes());
-            fileOutputStream.close();
+            if (file.exists()) {
 
-            Log.d("ICS", "ICS file saved at: " + icsFile.getAbsolutePath());
+                // Create a file for the ICS content
+                File icsFile = new File(directory, "event.ics");
+                FileOutputStream fileOutputStream = new FileOutputStream(icsFile);
+
+
+                // Write the ICS content to the file
+                fileOutputStream.write(icsContent.getBytes());
+                fileOutputStream.close();
+            }
+            else
+            {
+                // Create a file for the ICS content
+                File icsFile = new File(directory, "event.ics");
+                FileOutputStream fileOutputStream = new FileOutputStream(icsFile);
+
+
+                // Write the ICS content to the file
+                fileOutputStream.write(icsContent.getBytes());
+                fileOutputStream.close();
+            }
+
+            //Log.d("ICS", "ICS file saved at: " + icsFile.getAbsolutePath());
 
             }
         catch (IOException e)

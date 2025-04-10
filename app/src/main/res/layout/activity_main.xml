@@ -13,7 +13,7 @@
         android:layout_height="128dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="65dp"
-        android:onClick="changeActivity"
+        android:onClick="openNativeCalendar"
         android:text="Calendar"
         app:layout_constraintBaseline_toBaselineOf="@+id/button3"
         app:layout_constraintEnd_toStartOf="@+id/button3"

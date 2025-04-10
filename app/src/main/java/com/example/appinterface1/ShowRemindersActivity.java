@@ -1,9 +1,7 @@
 package com.example.appinterface1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,17 +10,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class ShowRemindersActivity extends AppCompatActivity {
 
@@ -57,25 +53,59 @@ public class ShowRemindersActivity extends AppCompatActivity {
         File icsFile = new File(directory, "event.ics");
 
         StringBuilder stringBuilder = new StringBuilder();
+        //correct way to display ICAL
+        /*
         try
         {
             FileInputStream fis = new FileInputStream(icsFile);
             List<String> eventDetails = parseICS(fis);
             displayEvents(eventDetails);
-            /*BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
-            }
-            reader.close();
-             */
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
+        */
 
-        //TextView textView = findViewById(R.id.textView);
+
+        //above is correct display of ICAL
+
+
+        TextView textView = findViewById(R.id.textView1);
+
+        if (icsFile.exists()) {
+            StringBuilder content = new StringBuilder();
+
+            try {
+                FileInputStream fis = new FileInputStream(icsFile);
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader reader = new BufferedReader(isr);
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    content.append(line).append("\n");
+                }
+
+                reader.close();
+                isr.close();
+                fis.close();
+
+                textView.setText(content.toString()); // Display in TextView
+                Log.d("INFO", "File loaded and displayed");
+
+            } catch (IOException e) {
+                Log.e("INFO", "Error reading file", e);
+                textView.setText("Error reading file: " + e.getMessage());
+            }
+
+        } else {
+            textView.setText("File not found: " + icsFile.getAbsolutePath());
+            Log.d("INFO", "File not found at: " + icsFile.getAbsolutePath());
+        }
+
+
+
+        //TextView textView = findViewById(R.id.textView1);
         //textView.setText(eventDetails);
     }
 
@@ -130,7 +160,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
             stringBuilder.append(event).append("\n\n");
         }
 
-        TextView textView = findViewById(R.id.textView);
+        TextView textView = findViewById(R.id.textView1);
         textView.setText(stringBuilder.toString());
     }
 
