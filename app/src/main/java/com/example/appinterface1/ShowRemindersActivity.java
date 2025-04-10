@@ -54,7 +54,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
 
         StringBuilder stringBuilder = new StringBuilder();
         //correct way to display ICAL
-        /*
+
         try
         {
             FileInputStream fis = new FileInputStream(icsFile);
@@ -65,11 +65,11 @@ public class ShowRemindersActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-        */
+
 
 
         //above is correct display of ICAL
-
+/*
 
         TextView textView = findViewById(R.id.textView1);
 
@@ -102,7 +102,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
             textView.setText("File not found: " + icsFile.getAbsolutePath());
             Log.d("INFO", "File not found at: " + icsFile.getAbsolutePath());
         }
-
+*/
 
 
         //TextView textView = findViewById(R.id.textView1);
