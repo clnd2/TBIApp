@@ -39,7 +39,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
 
    /* public void home(View v) {
 
-        Intent i = null;
+        Intent i;
 
         i = new Intent(this, MainActivity.class);
 

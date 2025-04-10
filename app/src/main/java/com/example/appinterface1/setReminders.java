@@ -47,7 +47,7 @@ public class setReminders extends AppCompatActivity {
 
     public void done(View v) {
 
-        Intent i = null;
+        Intent i;
 
         i = new Intent(this, ShowRemindersActivity.class);
 
@@ -61,7 +61,7 @@ public class setReminders extends AppCompatActivity {
 
     public void cancel(View v) {
 
-        Intent i = null;
+        Intent i;
 
         i = new Intent(this, RemindersActivity.class);
 
