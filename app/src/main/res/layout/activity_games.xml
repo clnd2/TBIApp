@@ -7,14 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".GamesActivity">
 
-    <TextView
-        android:id="@+id/textView3"
+    <Button
+        android:id="@+id/StartGames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:text="THIS IS THE GAMES SCREEN"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="264dp"
+        android:onClick="changeActivity"
+        android:text="Start"
+        app:layout_constraintBottom_toTopOf="@+id/Home"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/MoreGames" />
+
+    <Button
+        android:id="@+id/MoreGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="264dp"
+        android:onClick="changeActivity"
+        android:text="More Games"
+        app:layout_constraintBottom_toTopOf="@+id/Home"
+        app:layout_constraintEnd_toStartOf="@+id/StartGames"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="136dp"
+        android:onClick="changeActivity"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/StartGames" />
 </androidx.constraintlayout.widget.ConstraintLayout>

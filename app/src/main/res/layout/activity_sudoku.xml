@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Sudoku Grid -->
+
+    <!-- Check Solution Button -->
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="271dp"
+        android:layout_height="494dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:columnCount="9"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:rowCount="9" />
+
+    <Button
+        android:id="@+id/btnCheckSolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Solution"
+        android:layout_marginTop="16dp"/>
+
+    <!-- New Game Button -->
+    <Button
+        android:id="@+id/btnNewGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Game"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

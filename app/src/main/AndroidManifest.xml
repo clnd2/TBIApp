@@ -21,6 +21,27 @@
         android:theme="@style/Theme.AppInterface1"
         tools:targetApi="31">
         <activity
+            android:name=".WordSearch"
+            android:exported="false" />
+        <activity
+            android:name=".GamesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SudokuGame"
+            android:exported="false" />
+        <activity
+            android:name=".Sudoku"
+            android:exported="false" />
+        <activity
+            android:name=".Game2048"
+            android:exported="false" />
+        <activity
+            android:name=".MoreGames"
+            android:exported="false" />
+        <activity
+            android:name=".StartGames"
+            android:exported="false" />
+        <activity
             android:name=".setReminders"
             android:exported="false" />
         <activity
@@ -54,9 +75,6 @@
             android:name=".MessagesActivity"
             android:exported="false" />
         <activity
-            android:name=".GamesActivity"
-            android:exported="false" />
-        <activity
             android:name=".RemindersActivity"
             android:exported="false" />
         <activity
@@ -72,6 +90,5 @@
             </intent-filter>
         </activity>
     </application>
-
 
 </manifest>
