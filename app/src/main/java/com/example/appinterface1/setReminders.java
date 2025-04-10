@@ -30,6 +30,8 @@ public class setReminders extends AppCompatActivity {
 
         i = new Intent(this, ShowRemindersActivity.class);
 
+       // String test = android:id="@+id/uiDescription".toString();
+
         startActivity(i);
 
     }
