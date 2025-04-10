@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -28,7 +32,19 @@
             android:name=".TestActivity"
             android:exported="false" />
         <activity
-            android:name=".testing"
+            android:name=".setReminders"
+            android:exported="false" />
+        <activity
+            android:name=".ShowRemindersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pswdShow"
+            android:exported="false" />
+        <activity
+            android:name=".pswdSave"
+            android:exported="false" />
+        <activity
+            android:name=".choiceScreen"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

@@ -10,13 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class RemindersActivity extends AppCompatActivity {
+public class ShowRemindersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_reminders);
+        setContentView(R.layout.activity_show_reminders2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -24,21 +24,11 @@ public class RemindersActivity extends AppCompatActivity {
         });
     }
 
-    public void showReminders(View v) {
+    public void home(View v) {
 
         Intent i;
 
-        i = new Intent(this, ShowRemindersActivity.class);
-
-        startActivity(i);
-
-    }
-
-    public void setReminders(View v) {
-
-        Intent i;
-
-        i = new Intent(this, setReminders.class);
+        i = new Intent(this, MainActivity.class);
 
         startActivity(i);
 
