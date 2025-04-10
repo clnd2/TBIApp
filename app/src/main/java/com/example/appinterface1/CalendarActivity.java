@@ -83,8 +83,10 @@ public class CalendarActivity extends AppCompatActivity {
             case "Back":
                 i = new Intent(this, MainActivity.class);
                 break;
+            case "Create Event":
+                i = new Intent(this, Cal_CreateEventActivity.class);
             default:
-                i = new Intent(this, CalendarActivity.class);
+                i = new Intent(this, Cal_CreateEventActivity.class);
 
         }
         startActivity(i);
