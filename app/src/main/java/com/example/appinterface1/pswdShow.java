@@ -1,5 +1,6 @@
 package com.example.appinterface1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -23,6 +24,7 @@ public class pswdShow extends AppCompatActivity {
     //Global Variables
     String fileName = "Password List.txt";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,14 @@ public class pswdShow extends AppCompatActivity {
         TextView text = findViewById(R.id.fileShow);
         String data = readFromFile(fileName);
 
-        //Keep below here
-        text.setText(data);
+        if (data == null || data.isEmpty()){
+            text.setText("There are no passwords that are saved yet.");
+        }
+
+        else {
+            //Keep below here
+            text.setText(data);
+        }
 
         //Make the scroll for the passwords
         text.setMovementMethod(new ScrollingMovementMethod());
