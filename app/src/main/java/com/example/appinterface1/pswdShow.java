@@ -40,14 +40,9 @@ public class pswdShow extends AppCompatActivity {
         TextView text = findViewById(R.id.fileShow);
         String data = readFromFile(fileName);
 
-        if (data == null || data.isEmpty()){
-            text.setText("There are no passwords that are saved yet.");
-        }
+        Log.d("TAG", data);
 
-        else {
-            //Keep below here
-            text.setText(data);
-        }
+        text.setText(data);
 
         //Make the scroll for the passwords
         text.setMovementMethod(new ScrollingMovementMethod());
@@ -68,7 +63,8 @@ public class pswdShow extends AppCompatActivity {
             return new String(content);
         } catch (Exception e) {
             Log.d("TAG", "There was an error reading file in the try block.");
-            throw new RuntimeException(e);
+            content = "There are no saved passwords.".getBytes();
+            return new String(content);
         }
     }
 }
