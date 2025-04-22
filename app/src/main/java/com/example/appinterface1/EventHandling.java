@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class EventHandling extends Activity {
-    public static void addEvent(Context context, String title, Date startDate, Date endDate) {
+    public static void addEvent(Context context, String title, Date startDate, Date endDate, boolean isAllDay) {
         // input: title, start, end
         // adds event to native calendar with ID=1
 
@@ -43,6 +43,7 @@ public class EventHandling extends Activity {
         values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
         values.put(CalendarContract.Events.DTSTART, startMillis);
         values.put(CalendarContract.Events.DTEND, endMillis);
+        values.put(CalendarContract.Events.ALL_DAY, isAllDay);
 
         Uri uri = context.getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
 

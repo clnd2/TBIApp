@@ -260,6 +260,7 @@ public class setReminders extends AppCompatActivity {
         String[] durations = {"15 Minutes", "30 Minutes", "1 Hour", "2 Hours", "3 Hours", "4 Hours"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, durations);
         spinner.setAdapter(adapter);
+
     }
 
 

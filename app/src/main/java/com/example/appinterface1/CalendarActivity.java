@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -26,6 +29,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.net.URL;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -95,7 +99,32 @@ public class CalendarActivity extends AppCompatActivity {
     // run the thing
     public void getiCal(View view) {
         System.out.println("getiCal running");
-        fetchURLContent(iCalLink, this::handleiCal);
+        // check for internet connection
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean connected =false;
+        if (connectivityManager != null) {
+            Network network = connectivityManager.getActiveNetwork();
+            if (network!=null) {
+                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+                connected = (capabilities!=null) &&
+                        (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET));
+
+            }
+        }
+
+        if (connected){
+            fetchURLContent(iCalLink, this::handleiCal);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this,"syncing with OTF, please wait several minutes", duration);
+            toast.show();
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this,"please connect to internet", duration);
+            toast.show();
+        }
+
     }
 
     // get iCal link
@@ -140,7 +169,6 @@ public class CalendarActivity extends AppCompatActivity {
         // store ical events in a net.fortuna calendar
         Calendar iCalCal = parseICal(iCalString);
 
-        // getCalID();
 
         // get events out of net.fortuna calendar
         List<VEvent> events = iCalCal.getComponents(VEvent.VEVENT);
@@ -161,8 +189,8 @@ public class CalendarActivity extends AppCompatActivity {
             //String startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(event.getStartDate().getDate());
             Date start = event.getStartDate().getDate();
             Date end = event.getEndDate().getDate();
-
-            EventHandling.addEvent(context, title, start, end);
+            boolean isAllDay = event.getStartDate().toString().contains("VALUE=DATE");
+            EventHandling.addEvent(context, title, start, end, isAllDay);
 
         }
     }

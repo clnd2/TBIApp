@@ -72,7 +72,7 @@
         android:layout_width="218dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:text="Date Selecetd"
+        android:text="Date Selected"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uiSelectDate" />
 
