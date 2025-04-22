@@ -10,50 +10,37 @@
     <Button
         android:id="@+id/button12"
         android:layout_width="220dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="127dp"
+        android:layout_height="77dp"
         android:onClick="selectOptions"
         android:text="Save Password"
-        app:layout_constraintBottom_toTopOf="@+id/buttonE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="82dp" />
 
     <Button
         android:id="@+id/buttonE"
-        android:layout_width="144dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="88dp"
+        android:layout_width="220dp"
+        android:layout_height="77dp"
         android:onClick="selectOptions"
         android:text="Edit Password"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="262dp" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="121dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="75dp"
+        android:layout_width="220dp"
+        android:layout_height="77dp"
         android:onClick="selectOptions"
         android:text="Show Saved Passwords"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonE" />
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="448dp" />
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="65dp"
+        android:layout_width="97dp"
+        android:layout_height="49dp"
         android:onClick="homeScreen"
         android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="617dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
