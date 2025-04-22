@@ -9,24 +9,14 @@
 
     <Button
         android:id="@+id/button12"
-        android:layout_width="144dp"
+        android:layout_width="220dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginBottom="127dp"
         android:onClick="selectOptions"
-        android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:text="Save Password"
+        app:layout_constraintBottom_toTopOf="@+id/buttonE"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="76dp"
-        android:text="Select the Save button to Store a Password to Look at Later"
-        app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,13 +24,13 @@
         android:id="@+id/buttonE"
         android:layout_width="144dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="88dp"
         android:onClick="selectOptions"
-        android:text="Edit"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        android:text="Edit Password"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/button12" />
 
     <Button
         android:id="@+id/button7"
@@ -48,11 +38,11 @@
         android:layout_height="0dp"
         android:layout_marginBottom="75dp"
         android:onClick="selectOptions"
-        android:text="Show"
+        android:text="Show Saved Passwords"
         app:layout_constraintBottom_toTopOf="@+id/button8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonE" />
 
     <Button
         android:id="@+id/button8"
@@ -66,23 +56,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select to Edit a Saved Password"
-        app:layout_constraintBottom_toTopOf="@+id/buttonE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Show to Display All Saved Passwords"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonE" />
 </androidx.constraintlayout.widget.ConstraintLayout>
