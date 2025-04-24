@@ -1,12 +1,20 @@
 package com.example.appinterface1;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
+import android.Manifest;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,37 +31,34 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //requestCalendarPermission();
     }
 
     public void changeActivity(View v) {
         // when a button in main menu is pressed, will switch to corresponding activity
 
         Intent i;
-        String title = ((Button) v).getText().toString();
-        switch (title) {
-            case "Calendar":
-                i = new Intent(this, CalendarActivity.class);
-                break;
-            case "Reminders":
-                i = new Intent(this, RemindersActivity.class);
-                break;
-            case "Games":
-                i = new Intent(this,MoreGames.class);
-                break;
-            case "Messages":
-                i = new Intent(this, MessagesActivity.class);
-                break;
-            case "Profile":
-                i = new Intent(this, ProfileActivity.class);
-                break;
-            case "Password Manager":
-                i = new Intent(this, choiceScreen.class);
-                break;
-            default:
-                i = new Intent(this, MainActivity.class);
+        int id = v.getId();
 
+        // if-else instead of switch-case because of non-final nature of resource IDs
+        if (id == R.id.calendarButton) {
+            i = new Intent(this, CalendarActivity.class);
+        } else if (id == R.id.remindersButton) {
+            i = new Intent(this, RemindersActivity.class);
+        } else if (id == R.id.gamesButton) {
+            i = new Intent(this, GamesActivity.class);
+        } else if (id == R.id.messagesButton) {
+            i = new Intent(this, MessagesActivity.class);
+        } else if (id == R.id.profileButton) {
+            i = new Intent(this, ProfileActivity.class);
+        } else if (id == R.id.passwordManagerButton) {
+            i = new Intent(this, choiceScreen.class);
+        } else {
+            i = new Intent(this, MainActivity.class);
         }
-        startActivity(i);
 
+        // start activity
+        startActivity(i);
     }
 }

@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 public class choiceScreen extends AppCompatActivity {
 
     @Override
@@ -36,8 +37,12 @@ public class choiceScreen extends AppCompatActivity {
             Intent showScreen = new Intent(this, pswdShow.class);
             startActivity(showScreen);
         }
+        else if (title.equals("Edit")) {
+            Intent editScreen = new Intent(this, pswdEdit.class);
+            startActivity(editScreen);
+        }
         else {
-            System.out.println("There was a problem.");
+            System.out.println("There was an Issue.");
         }
     }
 
