@@ -139,7 +139,7 @@ public class pswdEdit extends AppCompatActivity {
             return new String(content);
         } catch (Exception e) {
             Log.d("TAG", "There was an error reading file in the try block.");
-            throw new RuntimeException(e);
+            return "Nothing";
         }
     }
 
