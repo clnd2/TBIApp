@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.remindersButton) {
             i = new Intent(this, RemindersActivity.class);
         } else if (id == R.id.gamesButton) {
-            i = new Intent(this, GamesActivity.class);
+            i = new Intent(this, MoreGames.class);
         } else if (id == R.id.messagesButton) {
             i = new Intent(this, MessagesActivity.class);
         } else if (id == R.id.profileButton) {
