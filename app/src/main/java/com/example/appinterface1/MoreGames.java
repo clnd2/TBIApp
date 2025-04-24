@@ -40,6 +40,8 @@ public class MoreGames extends AppCompatActivity {
             i = new Intent(this, Game2048.class);
         } else if (id == R.id.WordSearch) {
             i = new Intent(this, WordSearch.class);
+        } else if (id == R.id.Home) {
+                i = new Intent(this, MainActivity.class);
         } else {
             i = new Intent(this, MainActivity.class);
         }

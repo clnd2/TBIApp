@@ -1,7 +1,7 @@
 package com.example.appinterface1;
 
-
-
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.Gravity;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Game2048 extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class Game2048 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2048);
 
+        // Initialize views
         gridLayout = findViewById(R.id.gridLayout);
         startGameButton = findViewById(R.id.startGameButton);
         leftSwipe = findViewById(R.id.leftSwipe);
@@ -35,33 +39,45 @@ public class Game2048 extends AppCompatActivity {
         upSwipe = findViewById(R.id.upSwipe);
         downSwipe = findViewById(R.id.downSwipe);
         scoreTextView = findViewById(R.id.scoreTextView);
+        Button homeButton = findViewById(R.id.homeButton); // Initialize the Home button
 
-        // Initialize gesture detector for swipe actions
+        // Set listener for the Home button
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Game2048.this, MainActivity.class); // Change MainActivity to your home activity
+            startActivity(intent);
+            finish(); // Optionally close this activity to prevent the user from coming back to it
+        });
+
+        // Initialize gesture detector and other game logic
         gestureDetector = new GestureDetector(this, new GestureListener());
 
         // Initialize the grid and start new game button
         initializeGrid();
         startGameButton.setOnClickListener(v -> startNewGame());
 
-        // Set listeners for the swipe buttons (left, right, up, and down)
+        // Set listeners for the swipe buttons (left, right, up, down)
         leftSwipe.setOnClickListener(v -> {
             moveLeft();
             addRandomTile();
+            checkGameOver();
         });
 
         rightSwipe.setOnClickListener(v -> {
             moveRight();
             addRandomTile();
+            checkGameOver();
         });
 
         upSwipe.setOnClickListener(v -> {
             moveUp();
             addRandomTile();
+            checkGameOver();
         });
 
         downSwipe.setOnClickListener(v -> {
             moveDown();
             addRandomTile();
+            checkGameOver();
         });
 
         // Set onTouchListener for detecting swipe gestures
@@ -70,29 +86,52 @@ public class Game2048 extends AppCompatActivity {
         startNewGame();
     }
 
+
     private void initializeGrid() {
         gridLayout.removeAllViews();
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 tiles[i][j] = new TextView(this);
-                tiles[i][j].setWidth(200);
-                tiles[i][j].setHeight(200);
+
+                // Set tile dimensions (modify if necessary)
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = 200;
+                params.height = 200;
+                params.setMargins(5, 5, 5, 5); // Optional: margin to create spacing between tiles
+                tiles[i][j].setLayoutParams(params);
+
+                // Center the text inside each tile
+                tiles[i][j].setGravity(Gravity.CENTER); // Centers text horizontally and vertically
+
+                // Set background color and other styling
                 tiles[i][j].setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
                 tiles[i][j].setTextColor(getResources().getColor(android.R.color.white));
-                tiles[i][j].setTextSize(24);
-                tiles[i][j].setGravity(View.TEXT_ALIGNMENT_CENTER);
+                tiles[i][j].setTextSize(24); // Adjust text size if necessary
+
                 gridLayout.addView(tiles[i][j]);
             }
         }
     }
 
+    public void changeActivity(View v) {
+        // when a button in main menu is pressed, will switch to corresponding activity
+
+        Intent i;
+        int id = v.getId();
+
+        // if-else instead of switch-case because of non-final nature of resource IDs
+        if (id == R.id.Home) {
+            i = new Intent(this, MainActivity.class);
+        }
+    }
     private void startNewGame() {
         // Reset board and add two initial random tiles
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 board[i][j] = 0;
                 tiles[i][j].setText("");
+                updateTileColor(tiles[i][j], board[i][j]);
             }
         }
 
@@ -133,11 +172,38 @@ public class Game2048 extends AppCompatActivity {
 
         board[x][y] = (Math.random() < 0.9) ? 2 : 4;
         tiles[x][y].setText(String.valueOf(board[x][y]));
+        updateTileColor(tiles[x][y], board[x][y]);
     }
 
     private void updateScore(int points) {
         score += points;
         scoreTextView.setText("Score: " + score);
+    }
+
+    private void updateTileColor(TextView tile, int value) {
+        if (value == 0) {
+            tile.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+        } else {
+            int color = getTileColor(value);
+            tile.setBackgroundColor(color);
+        }
+    }
+
+    private int getTileColor(int value) {
+        switch (value) {
+            case 2: return Color.parseColor("#eee4da");
+            case 4: return Color.parseColor("#ede0c8");
+            case 8: return Color.parseColor("#f2b179");
+            case 16: return Color.parseColor("#f59563");
+            case 32: return Color.parseColor("#f67c5f");
+            case 64: return Color.parseColor("#f65e3b");
+            case 128: return Color.parseColor("#edcf72");
+            case 256: return Color.parseColor("#edcc61");
+            case 512: return Color.parseColor("#edc850");
+            case 1024: return Color.parseColor("#edc53f");
+            case 2048: return Color.parseColor("#edc22e");
+            default: return Color.parseColor("#3c3a32");
+        }
     }
 
     private void moveLeft() {
@@ -179,6 +245,7 @@ public class Game2048 extends AppCompatActivity {
                 } else {
                     tiles[i][j].setText("");
                 }
+                updateTileColor(tiles[i][j], board[i][j]);
             }
         }
     }
@@ -222,6 +289,7 @@ public class Game2048 extends AppCompatActivity {
                 } else {
                     tiles[i][j].setText("");
                 }
+                updateTileColor(tiles[i][j], board[i][j]);
             }
         }
     }
@@ -265,6 +333,7 @@ public class Game2048 extends AppCompatActivity {
                 } else {
                     tiles[i][j].setText("");
                 }
+                updateTileColor(tiles[i][j], board[i][j]);
             }
         }
     }
@@ -308,9 +377,12 @@ public class Game2048 extends AppCompatActivity {
                 } else {
                     tiles[i][j].setText("");
                 }
+                updateTileColor(tiles[i][j], board[i][j]);
             }
         }
     }
+
+
 
     private boolean isGameOver() {
         // Check for any empty cells
@@ -329,6 +401,24 @@ public class Game2048 extends AppCompatActivity {
         }
 
         return true; // No valid moves left
+    }
+
+    // Add this method inside your Game2048 class
+
+    private void checkGameOver() {
+        if (isGameOver()) {
+            Toast.makeText(Game2048.this, "Game Over!", Toast.LENGTH_SHORT).show();
+           //enableSwipeButtons(false);  // Disable swipe buttons when game is over
+        }
+    }
+
+    private void endGame() {
+        Toast.makeText(Game2048.this, "Game Over!", Toast.LENGTH_SHORT).show();
+        // Disable swipe buttons
+        leftSwipe.setEnabled(false);
+        rightSwipe.setEnabled(false);
+        upSwipe.setEnabled(false);
+        downSwipe.setEnabled(false);
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -355,10 +445,7 @@ public class Game2048 extends AppCompatActivity {
             }
 
             addRandomTile(); // Add a new random tile after each move
-
-            if (isGameOver()) {
-                Toast.makeText(Game2048.this, "Game Over!", Toast.LENGTH_SHORT).show();
-            }
+            checkGameOver(); // Check if the game is over after each move
 
             return true;
         }

@@ -1,5 +1,6 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +28,15 @@ public class SudokuGame extends AppCompatActivity {
         setContentView(R.layout.activity_sudoku);
 
         gridLayout = findViewById(R.id.gridLayout);
-
+        Button btnHome = findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the home screen, or perform an action like going to a different Activity
+                Intent intent = new Intent(SudokuGame.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         // Initialize the grid with EditTexts (cells are now editable)
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -251,11 +260,36 @@ public class SudokuGame extends AppCompatActivity {
             }
         }
 
-        // Display appropriate message based on whether all checked cells are correct
-        if (isCorrect) {
-            Toast.makeText(this, "Correct Solution!", Toast.LENGTH_SHORT).show();
+        // If the board is completely filled, check if the solution is correct
+        if (isBoardFull()) {
+            if (isCorrect) {
+                // Display a "Game Over: You solved it correctly!" message
+                Toast.makeText(this, "🎉 Game Over: You solved it correctly!", Toast.LENGTH_LONG).show();
+            } else {
+                // Display a "Game Over: Incorrect solution." message
+                Toast.makeText(this, "❌ Game Over: Incorrect solution.", Toast.LENGTH_LONG).show();
+            }
+
+            // Lock the board by disabling all cells (game over)
+            disableAllCells();
         } else {
-            Toast.makeText(this, "Incorrect Solution. Try again!", Toast.LENGTH_SHORT).show();
+            // If the board is not full, display appropriate message based on correctness
+            if (isCorrect) {
+                Toast.makeText(this, "So far so good!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Some answers are incorrect. Keep going!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+
+    // Helper method to disable all cells (lock the board when game is over)
+    private void disableAllCells() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                cells[i][j].setEnabled(false); // Disable editing of all cells
+            }
         }
     }
 
@@ -263,6 +297,17 @@ public class SudokuGame extends AppCompatActivity {
 
 
 
+
+    private boolean isBoardFull() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getText().toString().trim().isEmpty()) {
+                    return false; // Found an empty cell
+                }
+            }
+        }
+        return true; // No empty cells found
+    }
 
 
 

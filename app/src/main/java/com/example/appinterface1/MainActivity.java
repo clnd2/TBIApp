@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(this, RemindersActivity.class);
                 break;
             case "Games":
-                i = new Intent(this, GamesActivity.class);
+                i = new Intent(this,MoreGames.class);
                 break;
             case "Messages":
                 i = new Intent(this, MessagesActivity.class);

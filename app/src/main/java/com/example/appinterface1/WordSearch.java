@@ -1,5 +1,6 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,7 +8,6 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -333,6 +333,11 @@ public class WordSearch extends AppCompatActivity {
         resetSelectedButtonBackgrounds();
     }
 
+    public void changeActivity(View view) {
+        // Navigate to the Home Activity or perform any action for going to the home screen
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 
 

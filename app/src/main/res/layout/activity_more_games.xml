@@ -11,35 +11,47 @@
         android:id="@+id/Sudoku"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginEnd="3dp"
+        android:onClick="changeActivity"
         android:text="Sudoku"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="changeActivity" />
-    />
+        app:layout_constraintBaseline_toBaselineOf="@+id/G2048"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/G2048" />
 
     <Button
         android:id="@+id/G2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="146dp"
+        android:layout_marginBottom="147dp"
+        android:onClick="changeActivity"
         android:text="2048"
-        app:layout_constraintEnd_toEndOf="@+id/WordSearch"
-        app:layout_constraintStart_toStartOf="@+id/WordSearch"
-        app:layout_constraintTop_toBottomOf="@+id/Sudoku"
-        android:onClick="changeActivity" />
-    />
+        app:layout_constraintBottom_toTopOf="@+id/WordSearch"
+        app:layout_constraintEnd_toStartOf="@+id/Sudoku"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/WordSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginBottom="255dp"
+        android:onClick="changeActivity"
         android:text="WordSearch"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="changeActivity" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="174dp"
+        android:onClick="changeActivity"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/WordSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
