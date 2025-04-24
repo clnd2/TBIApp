@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="@+id/userText"
         app:layout_constraintTop_toBottomOf="@+id/desText" />
 
-
     <Button
         android:id="@+id/button10"
         android:layout_width="97dp"

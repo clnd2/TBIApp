@@ -73,5 +73,3 @@ public class pswdShow extends AppCompatActivity {
         }
     }
 }
-
-//Change
