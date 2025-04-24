@@ -27,23 +27,22 @@ public class choiceScreen extends AppCompatActivity {
     }
 
     public void selectOptions(View SP) {
-        String title = ((Button) SP).getText().toString();
+        Intent i;
+        int id = SP.getId();
 
-        if (title.equals("Save")) {
-            Intent saveScreen = new Intent(this, pswdSave.class);
-            startActivity(saveScreen);
+        if (id == R.id.homeButton) {
+            i = new Intent(this, MainActivity.class);
+        } else if (id == R.id.showButton) {
+            i = new Intent(this, pswdShow.class);
+        } else if (id == R.id.saveButton) {
+            i = new Intent(this, pswdSave.class);
+        } else if (id == R.id.editButton) {
+            i = new Intent(this, pswdEdit.class);
+        } else {
+            i = new Intent(this, choiceScreen.class);
         }
-        else if (title.equals("Show")) {
-            Intent showScreen = new Intent(this, pswdShow.class);
-            startActivity(showScreen);
-        }
-        else if (title.equals("Edit")) {
-            Intent editScreen = new Intent(this, pswdEdit.class);
-            startActivity(editScreen);
-        }
-        else {
-            System.out.println("There was an Issue.");
-        }
+
+        startActivity(i);
     }
 
     public void homeScreen(View H) {

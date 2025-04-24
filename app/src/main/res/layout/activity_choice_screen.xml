@@ -8,44 +8,44 @@
     tools:context=".choiceScreen">
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/saveButton"
         android:layout_width="220dp"
         android:layout_height="0dp"
         android:layout_marginTop="82dp"
         android:layout_marginBottom="103dp"
         android:onClick="selectOptions"
         android:text="Save Password"
-        app:layout_constraintBottom_toTopOf="@+id/buttonE"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonE"
+        android:id="@+id/editButton"
         android:layout_width="220dp"
         android:layout_height="0dp"
         android:layout_marginBottom="109dp"
         android:onClick="selectOptions"
         android:text="Edit Password"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/showButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/showButton"
         android:layout_width="220dp"
         android:layout_height="0dp"
         android:layout_marginBottom="92dp"
         android:onClick="selectOptions"
         android:text="Show Saved Passwords"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonE" />
+        app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/homeButton"
         android:layout_width="97dp"
         android:layout_height="0dp"
         android:layout_marginBottom="65dp"
@@ -54,6 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/showButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
