@@ -1,7 +1,9 @@
 package com.example.appinterface1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -39,7 +41,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
 
    /* public void home(View v) {
 
-        Intent i;
+        Intent i = null;
 
         i = new Intent(this, MainActivity.class);
 
@@ -47,6 +49,11 @@ public class ShowRemindersActivity extends AppCompatActivity {
 
     }*/
 
+    public void home(View v) {
+        Intent i = null;
+        i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
     private void displayICS ()
     {
         File directory = getFilesDir();
@@ -68,11 +75,16 @@ public class ShowRemindersActivity extends AppCompatActivity {
 
 
 
+
         //above is correct display of ICAL
-/*
+
+        //Testing
+
+
+
 
         TextView textView = findViewById(R.id.textView1);
-
+/*
         if (icsFile.exists()) {
             StringBuilder content = new StringBuilder();
 
@@ -102,7 +114,9 @@ public class ShowRemindersActivity extends AppCompatActivity {
             textView.setText("File not found: " + icsFile.getAbsolutePath());
             Log.d("INFO", "File not found at: " + icsFile.getAbsolutePath());
         }
-*/
+
+ */
+
 
 
         //TextView textView = findViewById(R.id.textView1);
