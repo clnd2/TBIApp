@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:layout_marginTop="56dp"
-            android:text="TEST 123"
+            android:text="There are currently no reminders set."
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </ScrollView>
