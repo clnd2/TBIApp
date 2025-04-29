@@ -181,35 +181,24 @@ public class setReminders extends AppCompatActivity {
     private void saveICSFile(String icsContent)
     {
         try {
-
-            File file = new File(getFilesDir(), "event.ics");
-
             // Get the path to the external storage directory
             File directory = getFilesDir();
 
             Log.e("INFO", "Display Directory:" + directory.getAbsolutePath());
 
-
-
                 // Create a file for the ICS content
                 File icsFile = new File(directory, "event.ics");
                 FileOutputStream fileOutputStream = new FileOutputStream(icsFile, true);
-
 
                 // Write the ICS content to the file
                 fileOutputStream.write(icsContent.getBytes());
                 fileOutputStream.close();
 
-
-
             //Log.d("ICS", "ICS file saved at: " + icsFile.getAbsolutePath());
-
             }
-        catch (IOException e)
-            {
+        catch (IOException e) {
             Log.e("ICS", "Error saving ICS file: " + e.getMessage());
             }
-
     }
 
     public void selectDate(View v)
@@ -231,7 +220,6 @@ public class setReminders extends AppCompatActivity {
                     if(selectedMonth < 10 && selectedDay < 10) {
                         String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "0" + selectedDay;
                         saveDate(selectedDate);
-
                     }
                     else if (selectedMonth < 10 && selectedDay >= 10)
                     {
