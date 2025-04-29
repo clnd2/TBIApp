@@ -12,10 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,17 +71,10 @@ public class ShowRemindersActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
         //above is correct display of ICAL
 
         //Testing
-
-
-
-
-        TextView textView = findViewById(R.id.textView1);
+        TextView textView = findViewById(R.id.eventText);
 /*
         if (icsFile.exists()) {
             StringBuilder content = new StringBuilder();
@@ -174,7 +165,7 @@ public class ShowRemindersActivity extends AppCompatActivity {
             stringBuilder.append(event).append("\n\n");
         }
 
-        TextView textView = findViewById(R.id.textView1);
+        TextView textView = findViewById(R.id.eventText);
         textView.setText(stringBuilder.toString());
     }
 

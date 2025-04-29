@@ -22,11 +22,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
 import java.util.Date;
-import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.model.component.VEvent;
-import net.fortuna.ical4j.model.property.Summary;
-import java.io.StringReader;
-import java.util.List;
 
 public class Cal_CreateEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -131,6 +126,9 @@ public class Cal_CreateEventActivity extends AppCompatActivity implements Adapte
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(this,"adding event, please wait several minutes", duration);
         toast.show();
+
+        Intent i = new Intent(this, CalendarActivity.class);
+        startActivity(i);
     }
 
     public void cancelButton(View view) {

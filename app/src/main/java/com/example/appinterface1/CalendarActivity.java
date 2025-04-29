@@ -1,7 +1,6 @@
 package com.example.appinterface1;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +30,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.io.BufferedReader;
@@ -45,8 +46,6 @@ import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.property.Summary;
 import java.io.StringReader;
 import java.util.List;
-import java.util.TimeZone;
-
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -73,9 +72,29 @@ public class CalendarActivity extends AppCompatActivity {
                 (view, year, month, dayOfMonth) -> {
                     String date = (month+1) + "-" + dayOfMonth + "-" + year;
                     date_view.setText(date);
+
+                    date = year + "-" + (month+1) + "-" + dayOfMonth;
+                    Date selectedDate = null;
+                    try {
+                        selectedDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    List<String> eventDetails = EventHandling.getEventsForDate(this, selectedDate);
+                    displayEvents(eventDetails);
                 }
         );
 
+    }
+
+    private void displayEvents(List<String> events) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String event : events) {
+            stringBuilder.append(event).append("\n\n");
+        }
+
+        TextView textView = findViewById(R.id.eventText);
+        textView.setText(stringBuilder.toString());
     }
 
     public void changeActivity(View v) {
