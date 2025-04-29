@@ -11,9 +11,7 @@
         android:id="@+id/buttonShowReminders"
         android:layout_width="219dp"
         android:layout_height="141dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="295dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginTop="140dp"
         android:onClick="showReminders"
         android:text="Show Reminders"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,15 +22,27 @@
         android:id="@+id/buttonSetReminders"
         android:layout_width="220dp"
         android:layout_height="141dp"
-        android:layout_marginStart="96dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="95dp"
         android:layout_marginBottom="114dp"
         android:onClick="setReminders"
         android:text="+ Set Reminders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonShowReminders" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonShowReminders"
+        app:layout_constraintVertical_bias="0.258" />
+
+    <Button
+        android:id="@+id/uiHome"
+        android:layout_width="108dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="63dp"
+        android:onClick="home"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

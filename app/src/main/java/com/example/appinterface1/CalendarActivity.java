@@ -62,7 +62,6 @@ public class CalendarActivity extends AppCompatActivity {
             return insets;
         });
         calendar = findViewById(R.id.calendarView);
-        date_view = findViewById(R.id.dateView);
 
         // listener for when date selected is changed
         calendar.setOnDateChangeListener(
