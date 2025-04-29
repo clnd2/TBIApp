@@ -106,7 +106,7 @@ public class Game2048 extends AppCompatActivity {
 
                 // Set background color and other styling
                 tiles[i][j].setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-                tiles[i][j].setTextColor(getResources().getColor(android.R.color.white));
+                tiles[i][j].setTextColor(getResources().getColor(android.R.color.black));
                 tiles[i][j].setTextSize(24); // Adjust text size if necessary
 
                 gridLayout.addView(tiles[i][j]);
@@ -410,15 +410,6 @@ public class Game2048 extends AppCompatActivity {
             Toast.makeText(Game2048.this, "Game Over!", Toast.LENGTH_SHORT).show();
            //enableSwipeButtons(false);  // Disable swipe buttons when game is over
         }
-    }
-
-    private void endGame() {
-        Toast.makeText(Game2048.this, "Game Over!", Toast.LENGTH_SHORT).show();
-        // Disable swipe buttons
-        leftSwipe.setEnabled(false);
-        rightSwipe.setEnabled(false);
-        upSwipe.setEnabled(false);
-        downSwipe.setEnabled(false);
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {

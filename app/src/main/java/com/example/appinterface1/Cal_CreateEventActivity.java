@@ -148,10 +148,6 @@ public class Cal_CreateEventActivity extends AppCompatActivity implements Adapte
         showTimePicker();
     }
 
-    public void spinnerHandler(){
-
-    }
-
     public void showDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
