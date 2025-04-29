@@ -43,4 +43,12 @@ public class RemindersActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+
+    public void home(View v) {
+        Intent i = null;
+
+        i = new Intent(this, MainActivity.class);
+
+        startActivity(i);
+    }
 }

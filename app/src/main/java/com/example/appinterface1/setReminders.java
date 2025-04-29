@@ -45,6 +45,11 @@ public class setReminders extends AppCompatActivity {
         setupRepeatSpinner(repeatSpinner); // Call the separate function
     }
 
+    public void home(View v) {
+        Intent i = null;
+        i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
     public void done(View v) {
 
         Intent i = null;
@@ -168,7 +173,7 @@ public class setReminders extends AppCompatActivity {
         icsContent.append("DESCRIPTION:" + desc + "\n");
         icsContent.append("STATUS:CONFIRMED\n");
         icsContent.append("END:VEVENT\n");
-        icsContent.append("END:VCALENDAR\n");
+        icsContent.append("END:VCALENDAR\n\n");
 
         return icsContent.toString();
     }
@@ -184,28 +189,18 @@ public class setReminders extends AppCompatActivity {
 
             Log.e("INFO", "Display Directory:" + directory.getAbsolutePath());
 
-            if (file.exists()) {
+
 
                 // Create a file for the ICS content
                 File icsFile = new File(directory, "event.ics");
-                FileOutputStream fileOutputStream = new FileOutputStream(icsFile);
+                FileOutputStream fileOutputStream = new FileOutputStream(icsFile, true);
 
 
                 // Write the ICS content to the file
                 fileOutputStream.write(icsContent.getBytes());
                 fileOutputStream.close();
-            }
-            else
-            {
-                // Create a file for the ICS content
-                File icsFile = new File(directory, "event.ics");
-                FileOutputStream fileOutputStream = new FileOutputStream(icsFile);
 
 
-                // Write the ICS content to the file
-                fileOutputStream.write(icsContent.getBytes());
-                fileOutputStream.close();
-            }
 
             //Log.d("ICS", "ICS file saved at: " + icsFile.getAbsolutePath());
 
