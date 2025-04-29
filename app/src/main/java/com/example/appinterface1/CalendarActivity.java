@@ -152,7 +152,6 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
     }
-
     public interface FetchCallback {
         void onResult(String result);
     }
