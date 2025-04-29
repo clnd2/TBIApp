@@ -1,5 +1,6 @@
 package com.example.appinterface1;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -32,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //requestCalendarPermission();
+        // if we don't have read calendar permission, ask for it
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR},100);
+        }
     }
 
     public void changeActivity(View v) {
