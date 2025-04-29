@@ -3,10 +3,16 @@ package com.example.appinterface1;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
+import android.widget.Button;
+import android.Manifest;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.remindersButton) {
             i = new Intent(this, RemindersActivity.class);
         } else if (id == R.id.gamesButton) {
-            i = new Intent(this, GamesActivity.class);
+            i = new Intent(this, MoreGames.class);
         } else if (id == R.id.messagesButton) {
             i = new Intent(this, MessagesActivity.class);
         } else if (id == R.id.profileButton) {

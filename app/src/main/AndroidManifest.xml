@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,6 +23,27 @@
         tools:targetApi="31">
         <activity
             android:name=".Cal_CreateEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WordSearch"
+            android:exported="false" />
+        <activity
+            android:name=".GamesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SudokuGame"
+            android:exported="false" />
+        <activity
+            android:name=".Sudoku"
+            android:exported="false" />
+        <activity
+            android:name=".Game2048"
+            android:exported="false" />
+        <activity
+            android:name=".MoreGames"
+            android:exported="false" />
+        <activity
+            android:name=".StartGames"
             android:exported="false" />
         <activity
             android:name=".setReminders"
@@ -36,13 +61,16 @@
             android:name=".choiceScreen"
             android:exported="false" />
         <activity
+            android:name=".pswdEdit"
+            android:exported="false" />
+        <activity
+            android:name=".choiceScreen"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".MessagesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".GamesActivity"
             android:exported="false" />
         <activity
             android:name=".RemindersActivity"

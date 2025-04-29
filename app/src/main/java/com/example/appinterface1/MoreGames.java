@@ -11,43 +11,43 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-
-public class choiceScreen extends AppCompatActivity {
+public class MoreGames extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_choice_screen);
+        setContentView(R.layout.activity_more_games);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+
         });
     }
 
-    public void selectOptions(View SP) {
-        Intent i;
-        int id = SP.getId();
+    public void changeActivity(View v) {
+        // when a button in main menu is pressed, will switch to corresponding activity
 
-        if (id == R.id.homeButton) {
-            i = new Intent(this, MainActivity.class);
-        } else if (id == R.id.showButton) {
-            i = new Intent(this, pswdShow.class);
-        } else if (id == R.id.saveButton) {
-            i = new Intent(this, pswdSave.class);
-        } else if (id == R.id.editButton) {
-            i = new Intent(this, pswdEdit.class);
+        Intent i;
+        int id = v.getId();
+
+        // if-else instead of switch-case because of non-final nature of resource IDs
+        if (id == R.id.Sudoku) {
+            i = new Intent(this, SudokuGame.class);
+        } else if (id == R.id.G2048) {
+            i = new Intent(this, Game2048.class);
+        } else if (id == R.id.WordSearch) {
+            i = new Intent(this, WordSearch.class);
+        } else if (id == R.id.Home) {
+                i = new Intent(this, MainActivity.class);
         } else {
-            i = new Intent(this, choiceScreen.class);
+            i = new Intent(this, MainActivity.class);
         }
 
+        // start activity
         startActivity(i);
-    }
-
-    public void homeScreen(View H) {
-        Intent homeScreen = new Intent(this, MainActivity.class);
-        startActivity(homeScreen);
     }
 
 }

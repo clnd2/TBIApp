@@ -8,44 +8,52 @@
     tools:context=".choiceScreen">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:id="@+id/saveButton"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="103dp"
         android:onClick="selectOptions"
-        android:text="Save"
+        android:text="Save Password"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
+        android:id="@+id/editButton"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="109dp"
         android:onClick="selectOptions"
-        android:text="Show"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:text="Edit Password"
+        app:layout_constraintBottom_toTopOf="@+id/showButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
     <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/showButton"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="92dp"
+        android:onClick="selectOptions"
+        android:text="Show Saved Passwords"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editButton" />
+
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="97dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="65dp"
         android:onClick="homeScreen"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button7" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="269dp"
-        android:layout_marginEnd="149dp"
-        android:text="Select Screen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
