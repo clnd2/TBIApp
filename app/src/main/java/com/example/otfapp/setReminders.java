@@ -1,4 +1,4 @@
-package com.example.appinterface1;
+package com.example.otfapp;
 
 import android.content.Intent;
 import android.os.Bundle;

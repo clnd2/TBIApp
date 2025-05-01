@@ -1,4 +1,4 @@
-package com.example.appinterface1;
+package com.example.otfapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,8 +13,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.File; //Added import
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Objects;
 
 import android.widget.TextView; //Added Import
 import android.util.Log; //Added Import

@@ -1,4 +1,4 @@
-package com.example.appinterface1;
+package com.example.otfapp;
 // Sudoku.java
 import androidx.appcompat.app.AppCompatActivity;
 

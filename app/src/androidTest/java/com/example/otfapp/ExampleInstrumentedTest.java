@@ -1,4 +1,4 @@
-package com.example.appinterface1;
+package com.example.otfapp;
 
 import static org.junit.Assert.assertEquals;
 

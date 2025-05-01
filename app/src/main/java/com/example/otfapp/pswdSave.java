@@ -1,4 +1,4 @@
-package com.example.appinterface1;
+package com.example.otfapp;
 //import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,7 +76,7 @@ public class pswdSave extends AppCompatActivity {
         CreateAndWriteFile(fileName, content);
 
         //Go back to the choice screen after saved password
-        Intent choiceScreen = new Intent(this, com.example.appinterface1.choiceScreen.class);
+        Intent choiceScreen = new Intent(this, com.example.otfapp.choiceScreen.class);
         startActivity(choiceScreen);
     }
 
