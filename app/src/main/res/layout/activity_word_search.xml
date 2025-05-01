@@ -43,8 +43,8 @@
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="403dp"
-        android:layout_height="460dp"
+        android:layout_width="375sp"
+        android:layout_height="462sp"
         android:layout_marginTop="20dp"
         android:columnCount="10"
         android:orientation="horizontal"
