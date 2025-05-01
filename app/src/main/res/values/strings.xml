@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">OTF App</string>
+    <string name="done">Done</string>
+    <string name="description">Description</string>
+    <string name="title_of_event">Title of event</string>
+    <string name="set_reminders">+ Set Reminders</string>
+    <string name="show_reminders">Show Reminders</string>
+    <string name="home">Home</string>
+    <string name="empty_reminders_text">There are currently no reminders set.</string>
+    <string name="sync_with_ical">Sync with iCal</string>
 </resources>

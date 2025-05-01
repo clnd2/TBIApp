@@ -14,7 +14,7 @@
       android:layout_marginStart="32dp"
       android:layout_marginTop="16dp"
       android:onClick="done"
-      android:text="Done"
+      android:text="@string/done"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/uiLocation" />
 
@@ -148,7 +148,7 @@
       app:layout_constraintTop_toBottomOf="@+id/textDateSelected" />
 
   <Button
-      android:id="@+id/uiHome"
+      android:id="@+id/buttonHome"
       android:layout_width="97dp"
       android:layout_height="49dp"
       android:layout_marginBottom="4dp"

@@ -8,6 +8,8 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,10 +20,10 @@ public class WordSearch extends AppCompatActivity {
     private GridLayout gridLayout;
     private TextView wordListTextView, scoreTextView;
     private int score = 0;
-    private char[][] letterGrid = new char[10][10]; // 10x10 grid for the word search
+    private final char[][] letterGrid = new char[10][10]; // 10x10 grid for the word search
     private List<String> wordsToFind = new ArrayList<>();
-    private List<String> foundWords = new ArrayList<>();
-    private List<Button> selectedButtons = new ArrayList<>(); // To keep track of selected buttons
+    private final List<String> foundWords = new ArrayList<>();
+    private final List<Button> selectedButtons = new ArrayList<>(); // To keep track of selected buttons
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -278,11 +280,11 @@ public class WordSearch extends AppCompatActivity {
         // If the button is already selected, deselect it and reset its background color
         if (selectedButtons.contains(button)) {
             selectedButtons.remove(button);
-            button.setBackgroundColor(getResources().getColor(android.R.color.darker_gray)); // Reset to gray
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.darker_gray)); // Reset to gray
         } else {
             // If it's not selected, add it to the list and highlight it
             selectedButtons.add(button);
-            button.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light)); // Highlight in blue
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.holo_blue_light)); // Highlight in blue
         }
 
         // After updating selected buttons, check if the sequence is valid
@@ -307,7 +309,7 @@ public class WordSearch extends AppCompatActivity {
 
         // Reassign the original list of words to wordsToFind
         List<String> allWords = getAllWords();  // This is a method to return your full list of words.
-        if (allWords != null && !allWords.isEmpty()) {
+        if (!allWords.isEmpty()) {
             // Ensure that wordsToFind is populated correctly
             wordsToFind = getRandomWords(allWords, 3); // Pick 3 random words, or adjust based on your logic
         }
@@ -428,7 +430,7 @@ public class WordSearch extends AppCompatActivity {
     private void resetSelectedButtonBackgrounds() {
         // Loop through the selected buttons and reset their background color to default
         for (Button button : selectedButtons) {
-            button.setBackgroundColor(getResources().getColor(android.R.color.darker_gray)); // Default unselected color
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.darker_gray)); // Default unselected color
         }
 
         // Clear the list of selected buttons
