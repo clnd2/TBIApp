@@ -9,28 +9,25 @@
 
     <Button
         android:id="@+id/Sudoku"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
+        android:layout_width="98dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="224dp"
         android:onClick="changeActivity"
         android:text="Sudoku"
-        app:layout_constraintBaseline_toBaselineOf="@+id/G2048"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/G2048" />
+        app:layout_constraintEnd_toEndOf="@+id/G2048"
+        app:layout_constraintStart_toStartOf="@+id/G2048"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/G2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="146dp"
-        android:layout_marginBottom="147dp"
         android:onClick="changeActivity"
         android:text="2048"
         app:layout_constraintBottom_toTopOf="@+id/WordSearch"
-        app:layout_constraintEnd_toStartOf="@+id/Sudoku"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/WordSearch"
+        app:layout_constraintStart_toStartOf="@+id/WordSearch"
+        app:layout_constraintTop_toBottomOf="@+id/Sudoku" />
 
     <Button
         android:id="@+id/WordSearch"
@@ -38,20 +35,22 @@
         android:layout_height="wrap_content"
         android:onClick="changeActivity"
         android:text="WordSearch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/Home"
+        app:layout_constraintEnd_toEndOf="@+id/Home"
+        app:layout_constraintStart_toStartOf="@+id/Home"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/Home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="174dp"
+        android:layout_marginBottom="96dp"
         android:onClick="changeActivity"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/WordSearch" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
