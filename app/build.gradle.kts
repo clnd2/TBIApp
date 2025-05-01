@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.appinterface1"
+    namespace = "com.example.otfapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.appinterface1"
+        applicationId = "com.example.otfapp"
         minSdk = 31
         targetSdk = 34
         versionCode = 1
