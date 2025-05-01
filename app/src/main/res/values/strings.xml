@@ -8,4 +8,7 @@
     <string name="home">Home</string>
     <string name="empty_reminders_text">There are currently no reminders set.</string>
     <string name="sync_with_ical">Sync with iCal</string>
+    <string name="reminders">Reminders</string>
+    <string name="calendar">Calendar</string>
+    <string name="games">Games</string>
 </resources>
