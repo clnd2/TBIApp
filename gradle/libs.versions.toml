@@ -1,5 +1,5 @@
 [versions]
-agp = "8.7.3"
+agp = "8.9.2"
 cacheApi = "1.1.1"
 ehcache = "3.10.8"
 ical4j = "3.0.26"
