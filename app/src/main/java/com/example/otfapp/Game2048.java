@@ -14,14 +14,13 @@ import android.view.Gravity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class Game2048 extends AppCompatActivity {
 
     private GridLayout gridLayout;
-    private Button startGameButton;
-    private Button leftSwipe, rightSwipe, upSwipe, downSwipe;
-    private TextView[][] tiles = new TextView[4][4];
-    private int[][] board = new int[4][4];
+    private final TextView[][] tiles = new TextView[4][4];
+    private final int[][] board = new int[4][4];
     private int score = 0;
     private TextView scoreTextView;
     private GestureDetector gestureDetector;
@@ -33,11 +32,11 @@ public class Game2048 extends AppCompatActivity {
 
         // Initialize views
         gridLayout = findViewById(R.id.gridLayout);
-        startGameButton = findViewById(R.id.startGameButton);
-        leftSwipe = findViewById(R.id.leftSwipe);
-        rightSwipe = findViewById(R.id.rightSwipe);
-        upSwipe = findViewById(R.id.upSwipe);
-        downSwipe = findViewById(R.id.downSwipe);
+        Button startGameButton = findViewById(R.id.startGameButton);
+        Button leftSwipe = findViewById(R.id.leftSwipe);
+        Button rightSwipe = findViewById(R.id.rightSwipe);
+        Button upSwipe = findViewById(R.id.upSwipe);
+        Button downSwipe = findViewById(R.id.downSwipe);
         scoreTextView = findViewById(R.id.scoreTextView);
         Button homeButton = findViewById(R.id.homeButton); // Initialize the Home button
 
@@ -105,8 +104,8 @@ public class Game2048 extends AppCompatActivity {
                 tiles[i][j].setGravity(Gravity.CENTER); // Centers text horizontally and vertically
 
                 // Set background color and other styling
-                tiles[i][j].setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-                tiles[i][j].setTextColor(getResources().getColor(android.R.color.black));
+                tiles[i][j].setBackgroundColor(ContextCompat.getColor(this, R.color.darker_gray));
+                tiles[i][j].setTextColor(ContextCompat.getColor(this, R.color.black));
                 tiles[i][j].setTextSize(24); // Adjust text size if necessary
 
                 gridLayout.addView(tiles[i][j]);
@@ -182,7 +181,7 @@ public class Game2048 extends AppCompatActivity {
 
     private void updateTileColor(TextView tile, int value) {
         if (value == 0) {
-            tile.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+            tile.setBackgroundColor(ContextCompat.getColor(this, R.color.darker_gray));
         } else {
             int color = getTileColor(value);
             tile.setBackgroundColor(color);

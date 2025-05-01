@@ -184,7 +184,7 @@ public class CalendarActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR},100);
         }
 
-        // store ical events in a net.fortuna calendar
+        // store iCal events in a net.fortuna calendar
         Calendar iCalCal = parseICal(iCalString);
 
 

@@ -15,11 +15,10 @@ import java.util.Collections;
 
 public class SudokuGame extends AppCompatActivity {
 
-    private int[][] solvedBoard = new int[9][9]; // Store the solved Sudoku board (correct solution)
+    private final int[][] solvedBoard = new int[9][9]; // Store the solved Sudoku board (correct solution)
 
-    private GridLayout gridLayout;
-    private EditText[][] cells = new EditText[9][9];
-    private int[][] board = new int[9][9]; // Store the numbers in the board (including the empty ones)
+    private final EditText[][] cells = new EditText[9][9];
+    private final int[][] board = new int[9][9]; // Store the numbers in the board (including the empty ones)
 
 
     @Override
@@ -27,7 +26,7 @@ public class SudokuGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
 
-        gridLayout = findViewById(R.id.gridLayout);
+        GridLayout gridLayout = findViewById(R.id.gridLayout);
         Button btnHome = findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +116,8 @@ public class SudokuGame extends AppCompatActivity {
 
         // Now copy the solved board to solvedBoard (this will be used for comparison later)
         for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                solvedBoard[i][j] = solvedPuzzleBoard[i][j]; // Copy the solved board to solvedBoard
-            }
+            // Copy the solved board to solvedBoard
+            System.arraycopy(solvedPuzzleBoard[i], 0, solvedBoard[i], 0, 9);
         }
 
         sudoku.removeNumbers();  // Remove numbers to create a puzzle

@@ -161,21 +161,18 @@ public class setReminders extends AppCompatActivity {
 
         //Log.d("endTime", endTime);
 
-        //create an ICAL file
-        StringBuilder icsContent = new StringBuilder();
-        icsContent.append("BEGIN:VCALENDAR\n");
-        icsContent.append("Version:2.0\n");
-        icsContent.append("BEGIN:VEVENT\n");
-        icsContent.append("SUMMARY:" + tit + "\n");
-        icsContent.append("DTSTART;TZID=America/Denver:" + dat + "T" + timStart + "00" + "\n");
-        icsContent.append("DTEND;TZID=America/Denver:" + dat + "T" + endTime + "00" + "\n");
-        icsContent.append("LOCATION:" + loc + "\n");
-        icsContent.append("DESCRIPTION:" + desc + "\n");
-        icsContent.append("STATUS:CONFIRMED\n");
-        icsContent.append("END:VEVENT\n");
-        icsContent.append("END:VCALENDAR\n\n");
-
-        return icsContent.toString();
+        // return an iCal file
+        return "BEGIN:VCALENDAR\n" +
+                "Version:2.0\n" +
+                "BEGIN:VEVENT\n" +
+                "SUMMARY:" + tit + "\n" +
+                "DTSTART;TZID=America/Denver:" + dat + "T" + timStart + "00" + "\n" +
+                "DTEND;TZID=America/Denver:" + dat + "T" + endTime + "00" + "\n" +
+                "LOCATION:" + loc + "\n" +
+                "DESCRIPTION:" + desc + "\n" +
+                "STATUS:CONFIRMED\n" +
+                "END:VEVENT\n" +
+                "END:VCALENDAR\n\n";
     }
 
     private void saveICSFile(String icsContent)
@@ -224,7 +221,7 @@ public class setReminders extends AppCompatActivity {
                     // if month less than 10 but day greater
                     else if (selectedMonth < 10)
                     {
-                        String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "" + selectedDay;
+                        String selectedDate = selectedYear + "0" + (selectedMonth + 1) + selectedDay;
                         saveDate(selectedDate);
                     }
                     // if day less than 10 but month greater
@@ -235,7 +232,7 @@ public class setReminders extends AppCompatActivity {
                     }
                     else
                     {
-                        String selectedDate = selectedYear + "" + (selectedMonth + 1) + "" + selectedDay;
+                        String selectedDate = selectedYear + "" + (selectedMonth + 1) + selectedDay;
                         saveDate(selectedDate);
                     }
 

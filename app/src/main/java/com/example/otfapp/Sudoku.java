@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class Sudoku extends AppCompatActivity {
-    private int[][] board = new int[9][9];
+    private final int[][] board = new int[9][9];
 
     // Generate a valid solved Sudoku board using backtracking
     public void generateBoard() {
