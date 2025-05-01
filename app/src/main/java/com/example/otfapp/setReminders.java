@@ -216,17 +216,19 @@ public class setReminders extends AppCompatActivity {
                 this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
 
-
+                    // if both less than 10
                     if(selectedMonth < 10 && selectedDay < 10) {
                         String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "0" + selectedDay;
                         saveDate(selectedDate);
                     }
-                    else if (selectedMonth < 10 && selectedDay >= 10)
+                    // if month less than 10 but day greater
+                    else if (selectedMonth < 10)
                     {
                         String selectedDate = selectedYear + "0" + (selectedMonth + 1) + "" + selectedDay;
                         saveDate(selectedDate);
                     }
-                    else if (selectedMonth >= 10 && selectedDay < 10)
+                    // if day less than 10 but month greater
+                    else if (selectedDay < 10)
                     {
                         String selectedDate = selectedYear + "" + (selectedMonth + 1) + "0" + selectedDay;
                         saveDate(selectedDate);
@@ -327,6 +329,4 @@ public class setReminders extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, durations);
         spinner.setAdapter(adapter);
     }
-
-
 }
