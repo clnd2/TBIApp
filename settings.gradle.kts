@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "App Interface 1"
+rootProject.name = "OTF App"
 include(":app")
